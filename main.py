@@ -1,12 +1,13 @@
 import sys
 
 from PyQt5.QtCore import QUrl, QDir
-from PyQt5.QtMultimedia import QMediaContent
+from PyQt5.QtMultimedia import QMediaContent, QMediaPlayer
+from PyQt5.QtMultimediaWidgets import QVideoWidget
 from PyQt5.QtWidgets import QDialog, QApplication, QFileDialog
 from form import *
-
+listem = []
 class Kelime:
-    def __init__(self,kelime,video):
+    def __init__(self,kelime="",video=""):
         self.kelime = kelime
         self.video = video
     def getKelime(self):
@@ -31,13 +32,29 @@ class MyForm(QDialog):
         self.mediaPlayer.setMedia(
                 QMediaContent(QUrl.fromLocalFile("2.mp4")))
         self.mediaPlayer.play()
+        self.listeyiHazirla()
 
         self.show()
+    def listeyiHazirla(self):
+        for i in range(5):
+            listem.append(Kelime(kelime="Kelime"+str(i),video=str(i)+".mp4"))
+        for v in listem:
+            self.ui.listWidget.addItem(v.kelime)
+
 
 
     def listedeKiElemanSecildi(self):
         d = self.ui.listWidget.currentItem()
-        print(d.text())
+
+        k = Kelime()
+        for l in listem:
+            print(l.kelime)
+            if d.text() == l.kelime:
+                k = l
+                break
+        self.mediaPlayer.setMedia(
+            QMediaContent(QUrl.fromLocalFile(k.video)))
+        self.mediaPlayer.play()
 
 
     def butonTiklandi(self):

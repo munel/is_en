@@ -9,8 +9,6 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtMultimedia import QMediaPlayer
-from PyQt5.QtMultimediaWidgets import QVideoWidget
 
 
 class Ui_Dialog(object):
@@ -24,21 +22,23 @@ class Ui_Dialog(object):
         self.listWidget.setGeometry(QtCore.QRect(10, 70, 151, 241))
         self.listWidget.setObjectName("listWidget")
         self.pushButton = QtWidgets.QPushButton(Dialog)
-        self.pushButton.setGeometry(QtCore.QRect(380, 20, 75, 23))
+        self.pushButton.setGeometry(QtCore.QRect(180, 30, 101, 21))
         self.pushButton.setObjectName("pushButton")
         self.horizontalLayoutWidget = QtWidgets.QWidget(Dialog)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(180, 70, 421, 241))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
         self.layout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.layout.setContentsMargins(0, 0, 0, 0)
+        self.layout.setSpacing(6)
         self.layout.setObjectName("layout")
+
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.pushButton.setText(_translate("Dialog", "PushButton"))
+        self.pushButton.setText(_translate("Dialog", "Quiz İçin Tıklayın."))
 
 
 if __name__ == "__main__":

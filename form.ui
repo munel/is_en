@@ -36,14 +36,14 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>380</x>
-     <y>20</y>
-     <width>75</width>
-     <height>23</height>
+     <x>180</x>
+     <y>30</y>
+     <width>101</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Quiz İçin Tıklayın.</string>
    </property>
   </widget>
   <widget class="QWidget" name="horizontalLayoutWidget">
@@ -55,7 +55,11 @@
      <height>241</height>
     </rect>
    </property>
-   <layout class="QHBoxLayout" name="layout"/>
+   <layout class="QHBoxLayout" name="layout">
+    <property name="spacing">
+     <number>6</number>
+    </property>
+   </layout>
   </widget>
  </widget>
  <resources/>
