@@ -5,7 +5,9 @@ from PyQt5.QtMultimedia import QMediaContent, QMediaPlayer
 from PyQt5.QtMultimediaWidgets import QVideoWidget
 from PyQt5.QtWidgets import QDialog, QApplication, QFileDialog
 from form import *
-listem = []
+seciliListe = []
+listem = ["araba","berbat","deneme","falanca","istanbul","python","şeker","ıspanak","bilgisayar","telefon",
+          "araba","acaba","akran","çocuk","bilgisayar","resim","seçim","ülke"]
 class Kelime:
     def __init__(self,kelime="",video=""):
         self.kelime = kelime
@@ -36,32 +38,38 @@ class MyForm(QDialog):
 
         self.show()
     def listeyiHazirla(self):
-        for i in range(5):
-            listem.append(Kelime(kelime="Kelime"+str(i),video=str(i)+".mp4"))
-        for v in listem:
-            self.ui.listWidget.addItem(v.kelime)
+
+        self.ui.listWidget.addItems(listem)
+
+    def videoyuOynat(self,video):
+        self.mediaPlayer.setMedia(
+            QMediaContent(QUrl.fromLocalFile(video)))
+        self.mediaPlayer.play()
+
 
 
 
     def listedeKiElemanSecildi(self):
         d = self.ui.listWidget.currentItem()
 
-        k = Kelime()
-        for l in listem:
-            print(l.kelime)
-            if d.text() == l.kelime:
-                k = l
-                break
-        self.mediaPlayer.setMedia(
-            QMediaContent(QUrl.fromLocalFile(k.video)))
-        self.mediaPlayer.play()
+
 
 
     def butonTiklandi(self):
         self.ui.listWidget.addItem(self.ui.lineEdit.text())
 
     def aramaMetniDegistir(self):
-        print(self.ui.lineEdit.text())
+        self.ui.listWidget.clear()
+        seciliListe.clear()
+        aramaMetni = self.ui.lineEdit.text()
+        for v in  listem:
+            if v.startswith(aramaMetni):
+                seciliListe.append(v)
+
+        self.ui.listWidget.addItems(seciliListe)
+
+
+
 
 
 if __name__=="__main__":
