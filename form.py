@@ -16,13 +16,13 @@ class Ui_Dialog(object):
         Dialog.setObjectName("Dialog")
         Dialog.resize(621, 321)
         self.lineEdit = QtWidgets.QLineEdit(Dialog)
-        self.lineEdit.setGeometry(QtCore.QRect(10, 30, 151, 20))
+        self.lineEdit.setGeometry(QtCore.QRect(10, 40, 161, 20))
         self.lineEdit.setObjectName("lineEdit")
         self.listWidget = QtWidgets.QListWidget(Dialog)
-        self.listWidget.setGeometry(QtCore.QRect(10, 70, 151, 241))
+        self.listWidget.setGeometry(QtCore.QRect(10, 70, 161, 241))
         self.listWidget.setObjectName("listWidget")
         self.pushButton = QtWidgets.QPushButton(Dialog)
-        self.pushButton.setGeometry(QtCore.QRect(180, 30, 101, 21))
+        self.pushButton.setGeometry(QtCore.QRect(190, 10, 101, 21))
         self.pushButton.setObjectName("pushButton")
         self.horizontalLayoutWidget = QtWidgets.QWidget(Dialog)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(180, 70, 421, 241))
@@ -31,6 +31,15 @@ class Ui_Dialog(object):
         self.layout.setContentsMargins(0, 0, 0, 0)
         self.layout.setSpacing(6)
         self.layout.setObjectName("layout")
+        self.comboBox = QtWidgets.QComboBox(Dialog)
+        self.comboBox.setGeometry(QtCore.QRect(10, 10, 161, 22))
+        self.comboBox.setObjectName("comboBox")
+        self.pushButton_2 = QtWidgets.QPushButton(Dialog)
+        self.pushButton_2.setGeometry(QtCore.QRect(300, 10, 81, 23))
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.pushButton_3 = QtWidgets.QPushButton(Dialog)
+        self.pushButton_3.setGeometry(QtCore.QRect(390, 10, 91, 23))
+        self.pushButton_3.setObjectName("pushButton_3")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -39,6 +48,8 @@ class Ui_Dialog(object):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.pushButton.setText(_translate("Dialog", "Quiz İçin Tıklayın."))
+        self.pushButton_2.setText(_translate("Dialog", "Kategori Ekle"))
+        self.pushButton_3.setText(_translate("Dialog", "Kelime Ekle"))
 
 
 if __name__ == "__main__":
