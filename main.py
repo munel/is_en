@@ -57,8 +57,15 @@ class MyForm(QMainWindow):
             if item != "Kategori Seçin":
                 duzenlenmis, ok = QInputDialog.getText(self, "Kategori Düzenle", f"Düzenlenen Kategori:  {item}", QLineEdit.Normal, "")
                 if ok and item:
-                    # Kategoriler tablosunda düzenleme yapılacak
-                    pass
+                    with conn:
+                        cur.execute("UPDATE GRUPLAR SET GRUP_ADI = (?) WHERE GRUP_ADI=(?)", [duzenlenmis, item])
+                    kategoriListesi.remove(item)
+                    kategoriListesi.append(duzenlenmis)
+                    self.ui.comboBox.clear()
+                    self.ui.comboBox.addItems(kategoriListesi)
+                    self.ui.listWidget.clear()
+                    self.ui.listWidget.addItems(kelimeListesi)
+
 
 
 
@@ -66,18 +73,34 @@ class MyForm(QMainWindow):
         yeniKategori, okPressed = QInputDialog.getText(self, "Kategori Ekleme", "Yeni Kategori:", QLineEdit.Normal, "")
         if okPressed and yeniKategori != '':
             # kategoriler tablosuna yeni kategori eklenecek
-            kategoriListesi.append(yeniKategori)
-            self.ui.comboBox.clear()
-            self.ui.comboBox.addItems(kategoriListesi)
+            try:
+                with conn:
+                    cur.execute("INSERT INTO GRUPLAR (GRUP_ADI) VALUES (?)",
+                                [yeniKategori])
+                print(yeniKategori)
+                kategoriListesi.append(yeniKategori)
+                self.ui.comboBox.clear()
+                self.ui.comboBox.addItems(kategoriListesi)
+                self.ui.listWidget.clear()
+                self.ui.listWidget.addItems(kelimeListesi)
+            except Exception as e:
+                print(e)
 
     def kategoriSil(self):
         item, okPressed = QInputDialog.getItem(self, "Kategori Silme İşlemi", "Silineek Kategoriyi Silin:", kategoriListesi, 0, False)
         if okPressed and item:
             if item != "Kategori Seçin":
-                # Kategori tablosundan veri silinecek
-                kategoriListesi.remove(item)
-                self.ui.comboBox.clear()
-                self.ui.comboBox.addItems(kategoriListesi)
+                try:
+                    with conn:
+                        cur.execute("DELETE FROM GRUPLAR Where GRUP_ADI=(?)", [item])
+
+                    kategoriListesi.remove(item)
+                    self.ui.comboBox.clear()
+                    self.ui.comboBox.addItems(kategoriListesi)
+                    self.ui.listWidget.clear()
+                    self.ui.listWidget.addItems(kelimeListesi)
+                except Exception as e:
+                    print(e)
 
 
 
