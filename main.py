@@ -17,22 +17,10 @@ kategoriListesiTupple = cur.fetchall()
 kategoriListesi = [item[0] for item in kategoriListesiTupple]
 kategoriListesi.insert(0,"Kategori Seçin")
 
-seciliListe = kelimeListesi
+seciliListe = []
 # kategoriListesi = ["Kategori Seçin", "Harfler", "Renkler", "Aylar", "Günler"]
 # kelimeListesi = ["araba", "berbat", "deneme", "falanca", "istanbul", "python", "şeker", "ıspanak", "bilgisayar", "telefon",
 #           "araba", "acaba", "akran", "çocuk", "bilgisayar", "resim", "seçim", "ülke"]
-
-
-class Kelime:
-    def __init__(self, kelime="", video=""):
-        self.kelime = kelime
-        self.video = video
-
-    def getKelime(self):
-        return self.kelime
-
-    def getVideoName(self):
-        return self.video
 
 
 class MyForm(QMainWindow):
@@ -97,7 +85,14 @@ class MyForm(QMainWindow):
 
         kategori = self.ui.comboBox.itemText(self.ui.comboBox.currentIndex())
         if (self.ui.comboBox.currentIndex() != 0):
-            print(kategori)
+            try:
+                cur.execute("SELECT KELIME_ADI FROM WR_GRUP_KELIMELERI WHERE GRUP_ADI=(?)", [kategori])
+                sonuc = cur.fetchall()
+                seciliListe = [item[0] for item in sonuc]
+                self.ui.listWidget.clear()
+                self.ui.listWidget.addItems(seciliListe)
+            except Exception as e:
+                print(e)
 
     def comboListeHazirla(self):
         self.ui.comboBox.addItems(kategoriListesi)
