@@ -4,7 +4,7 @@ Ana ekran tasarımı yapılacak.
 Veritababanı için videolar çekilecek.
 Veritabanı oluşturulacak.
 Kelime arama işlevi eklenecek.
-Seçlen kelime için video oynatılacak.
+Seçilen kelime için video oynatılacak.
 Speech to text işlevi eklenecek.
 Veritabanına yeni kayıt ekleme ve düzenleme eklenecek.
 Quiz bölümü eklekecek.
