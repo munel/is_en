@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>614</width>
-    <height>371</height>
+    <width>714</width>
+    <height>365</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -47,9 +47,9 @@
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>190</x>
       <y>10</y>
-      <width>421</width>
+      <width>501</width>
       <height>301</height>
      </rect>
     </property>
@@ -65,7 +65,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>614</width>
+     <width>714</width>
      <height>21</height>
     </rect>
    </property>
@@ -91,9 +91,18 @@
     </property>
     <addaction name="actionRastgele_S_nav_Yap"/>
    </widget>
+   <widget class="QMenu" name="menuHakk_nda">
+    <property name="title">
+     <string>Hakkında</string>
+    </property>
+    <addaction name="actionHakk_nda"/>
+    <addaction name="separator"/>
+    <addaction name="actionYard_m"/>
+   </widget>
    <addaction name="menuKelimeler"/>
    <addaction name="menuKategoriler"/>
    <addaction name="menuS_nav"/>
+   <addaction name="menuHakk_nda"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionKelime_Ekle">
@@ -129,6 +138,16 @@
   <action name="actionRastgele_S_nav_Yap">
    <property name="text">
     <string>Rastgele Sınav Yap</string>
+   </property>
+  </action>
+  <action name="actionHakk_nda">
+   <property name="text">
+    <string>Hakkında</string>
+   </property>
+  </action>
+  <action name="actionYard_m">
+   <property name="text">
+    <string>Yardım</string>
    </property>
   </action>
  </widget>
