@@ -92,7 +92,7 @@ class YeniKelimeEkle(QDialog):
             print(ad)
             aduzanti = ad + "." + dosyaAdiHam.split(".")[-1]
             self.hedef = "VIDEOLAR/" + aduzanti
-            shutil.copy(self.orjinalYol, self.hedef)
+   
 
 
 
@@ -101,6 +101,7 @@ class YeniKelimeEkle(QDialog):
         if self.kelime == "" or len(self.secilenler)==0 or self.orjinalYol == "":
             print("Boş Bırakıldı")
         else:
+            shutil.copy(self.orjinalYol, self.hedef)
             with conn:
                 cur = conn.cursor()
                 cur.execute("INSERT INTO KELIMELER (KELIME_ADI,KELIME_YOLU) VALUES(?,?)",[self.kelime.upper(),self.hedef])
