@@ -1,0 +1,7 @@
+../__pycache__/pyaudio.cpython-39.pyc
+../_portaudio.cpython-39-darwin.so
+../pyaudio.py
+PKG-INFO
+SOURCES.txt
+dependency_links.txt
+top_level.txt
