@@ -70,7 +70,7 @@ class MyForm(QMainWindow):
         d = self.kelimeListesi[self.referansSayi]
         if yazi == d:
             print("aferin")
-        self.puan = self.puan +1
+            self.puan = self.puan +1
         print(self.puan)
 
         self.ui.label_Puan.setText(str(self.puan))
