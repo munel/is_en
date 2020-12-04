@@ -24,9 +24,7 @@ kategoriListesi = [item[0] for item in kategoriListesiTupple]
 kategoriListesi.insert(0,"Kategori Seçin")
 
 seciliListe = []
-# kategoriListesi = ["Kategori Seçin", "Harfler", "Renkler", "Aylar", "Günler"]
-# kelimeListesi = ["araba", "berbat", "deneme", "falanca", "istanbul", "python", "şeker", "ıspanak", "bilgisayar", "telefon",
-#           "araba", "acaba", "akran", "çocuk", "bilgisayar", "resim", "seçim", "ülke"]
+
 
 class KayitButonu(QtWidgets.QPushButton):
     def __init__(self, parent=None):

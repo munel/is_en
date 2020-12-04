@@ -11,7 +11,9 @@ import shutil
 import string
 conn = sqlite3.connect('Sozluk.db')
 
-
+def buyukHarfeCevir(metin):
+    dizi = ["İ" if m=="i" else m.upper() for m in metin]
+    return "".join(dizi)
 
 class YeniKelimeEkle(QDialog):
     def __init__(self):
@@ -104,7 +106,7 @@ class YeniKelimeEkle(QDialog):
             shutil.copy(self.orjinalYol, self.hedef)
             with conn:
                 cur = conn.cursor()
-                cur.execute("INSERT INTO KELIMELER (KELIME_ADI,KELIME_YOLU) VALUES(?,?)",[self.kelime.upper(),self.hedef])
+                cur.execute("INSERT INTO KELIMELER (KELIME_ADI,KELIME_YOLU) VALUES(?,?)",[buyukHarfeCevir(self.kelime),self.hedef])
                 kelimeId = cur.lastrowid
                 for g in self.secilenler:
                     cur.execute("SELECT ID FROM GRUPLAR WHERE GRUP_ADI=(?)",[g])

@@ -12,6 +12,10 @@ import sqlite3
 
 conn = sqlite3.connect('Sozluk.db')
 
+def buyukHarfeCevir(metin):
+    dizi = ["İ" if m=="i" else m.upper() for m in metin]
+    return "".join(dizi)
+
 class MyForm(QMainWindow):
     referansSayi = 0
     puan=0
@@ -65,7 +69,7 @@ class MyForm(QMainWindow):
         self.videoyuOynat()
 
     def tahmin(self):
-        yazi = self.ui.lineEdit_2.text().upper()
+        yazi = buyukHarfeCevir(self.ui.lineEdit_2.text())
         print(yazi)
         d = self.kelimeListesi[self.referansSayi]
         if yazi == d:

@@ -7,7 +7,15 @@ from kelimeislemleri import YeniKelimeEkle
 from form import *
 import sqlite3
 
+
 conn = sqlite3.connect('Sozluk.db')
+
+
+
+def buyukHarfeCevir(metin):
+    dizi = ["İ" if m=="i" else m.upper() for m in metin]
+    return "".join(dizi)
+
 
 class MyForm(QMainWindow):
     def __init__(self):
@@ -34,8 +42,11 @@ class MyForm(QMainWindow):
         self.comboListeHazirla()
 
         self.mediaPlayer = QMediaPlayer(None, QMediaPlayer.VideoSurface)
-        videoWidget = QVideoWidget()
+        videoWidget = QVideoWidget(self)
         self.ui.layout.addWidget(videoWidget)
+
+
+
         self.mediaPlayer.setVideoOutput(videoWidget)
         self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile("VIDEOLAR/RAHAT.mp4")))
         self.mediaPlayer.play()
@@ -189,7 +200,7 @@ class MyForm(QMainWindow):
         self.seciliListe.clear()
         aramaMetni = self.ui.lineEdit.text()
         for v in self.kelimeListesi:
-            if v.startswith(aramaMetni.upper()):
+            if v.startswith(buyukHarfeCevir(aramaMetni)):
                 self.seciliListe.append(v)
 
         self.ui.listWidget.addItems(self.seciliListe)
