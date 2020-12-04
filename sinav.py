@@ -17,8 +17,10 @@ def buyukHarfeCevir(metin):
     return "".join(dizi)
 
 class MyForm(QMainWindow):
-    referansSayi = 0
-    puan=0
+    referansSayi = 0 # kelimeler listesinde istenlen kelimenin indsi için
+    puan=0  # doğru cevap sayısını bulmak için
+    yanlisSayisi = 0 # yanlış cevap sayısını bulmak için
+
     def __init__(self) -> MyForm:
         super().__init__()
         self.ui = Ui_MainWindow()
@@ -35,8 +37,7 @@ class MyForm(QMainWindow):
         self.ui.startButton.clicked.connect(self.videoyuOynat)
         self.ui.sonraButon.clicked.connect(self.sonraki)
         self.ui.tahminButton.clicked.connect(self.tahmin)
-
-        self.ui.pushButton_2.clicked.connect(self.cikis)
+        self.ui.bitirButton.clicked.connect(self.cikis)
 
 
     def videoyuOynat(self):
@@ -45,7 +46,6 @@ class MyForm(QMainWindow):
         self.mediaPlayer.setMedia(
             QMediaContent(QUrl.fromLocalFile("VIDEOLAR/{}.MP4".format(d))))
         self.mediaPlayer.play()
-
 
 
     def listeHazirla(self):
@@ -75,9 +75,17 @@ class MyForm(QMainWindow):
         if yazi == d:
             print("aferin")
             self.puan = self.puan +1
-        print(self.puan)
+        else:
+            self.ui.listWidget.addItem("{} değil {} olacak".format(yazi,d))
+            print("yanlış cevap") #yanlış cevap verilirse
+            self.yanlisSayisi +=1
 
+        print("Doğru Cevap Sayısı = {} / Yanlış Cevap Sayısı = {}".format(self.puan,self.yanlisSayisi))
+        self.sonraki()
+        # tahmin doğru olsa da yanlış olsa da yeni kelime üretiyoruz
         self.ui.label_Puan.setText(str(self.puan))
+        self.ui.label_Yanlis.setText(str(self.yanlisSayisi))
+        self.ui.lineEdit_2.setText("")
 
     def cikis(self):
         sys.exit(app.exec_())
