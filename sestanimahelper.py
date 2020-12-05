@@ -21,3 +21,4 @@ def sesTanimaFunc():
             print("Dinleme Bitti")
 
     return algilanan
+print(sesTanimaFunc())
