@@ -4,13 +4,13 @@ from PyQt5.QtMultimedia import QMediaContent, QMediaPlayer
 from PyQt5.QtMultimediaWidgets import QVideoWidget
 from PyQt5.QtWidgets import QDialog, QApplication, QFileDialog, QInputDialog, QMainWindow, QLineEdit, QMessageBox
 from kelimeislemleri import YeniKelimeEkle
+from Sinav_coktan_secme import *
 from form import *
 import sqlite3
 
 
+
 conn = sqlite3.connect('Sozluk.db')
-
-
 
 def buyukHarfeCevir(metin):
     dizi = ["İ" if m=="i" else m.upper() for m in metin]
@@ -29,7 +29,7 @@ class MyForm(QMainWindow):
         self.ui.actionKategori_Ekle.triggered.connect(self.yeniKategoriEkle)
         self.ui.actionKategori_Sil.triggered.connect(self.kategoriSil)
         self.ui.actionKategori_D_zenle.triggered.connect(self.kategoriDuzenle)
-        self.ui.actionRastgele_S_nav_Yap.triggered.connect(self.rastgeleSinav)
+        self.ui.actionRastgele_S_nav_Yap.triggered.connect(self.sinavCoktanSecmeli)
         self.ui.actionKelime_Ekle.triggered.connect(self.yeniKelimeEkle)
         self.ui.actionKelime_Sil.triggered.connect(self.kelimeSil)
 
@@ -51,7 +51,12 @@ class MyForm(QMainWindow):
         self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile("VIDEOLAR/RAHAT.mp4")))
         self.mediaPlayer.play()
 
+
+
+
         self.show()
+    def sinavCoktanSecmeli(self):
+        self.ui = Sinav_coktan_secme()
 
     def listeleriHazirla(self):
         with conn:

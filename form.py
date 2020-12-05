@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(714, 369)
+        MainWindow.resize(722, 366)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.comboBox = QtWidgets.QComboBox(self.centralwidget)
@@ -36,7 +36,7 @@ class Ui_MainWindow(object):
         self.layout.setObjectName("layout")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 714, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 722, 21))
         self.menubar.setObjectName("menubar")
         self.menuKelimeler = QtWidgets.QMenu(self.menubar)
         self.menuKelimeler.setObjectName("menuKelimeler")
