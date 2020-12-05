@@ -24,10 +24,10 @@ Soru_Cevap_listesi= []
 Dogru_yanlis_listesi =[]
 
 
-class Sinav_coktan_secme(QDialog):
+class Sinav_coktan_secme(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.ui = Ui_QDialog()
+        self.ui = Ui_Form()
         self.ui.setupUi(self)
         self.ui.Btn_ileri.clicked.connect(self.sonraki_video)
         self.ui.Btn_Geri.clicked.connect(self.onceki_video)
@@ -55,7 +55,6 @@ class Sinav_coktan_secme(QDialog):
             QMediaContent(QUrl.fromLocalFile("2.mp4")))
         self.mediaPlayer.play()
         self.show()
-        self.exec_()
 
 
 

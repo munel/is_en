@@ -56,11 +56,9 @@ class MyForm(QMainWindow):
 
         self.show()
     def sinavCoktanSecmeli(self):
-        self.s = Sinav_coktan_secme()
-
-
-
-
+        self.Form = QtWidgets.QWidget()
+        self.Form.ui = Sinav_coktan_secme()
+        self.Form.ui.show()
 
     def listeleriHazirla(self):
         with conn:
