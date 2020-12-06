@@ -96,11 +96,10 @@
    </widget>
    <widget class="QMenu" name="menuHakk_nda">
     <property name="title">
-     <string>Hakkında</string>
+     <string>Oyun</string>
     </property>
-    <addaction name="actionHakk_nda"/>
+    <addaction name="actionHafiza_Oyunu"/>
     <addaction name="separator"/>
-    <addaction name="actionYard_m"/>
    </widget>
    <addaction name="menuKelimeler"/>
    <addaction name="menuKategoriler"/>
@@ -140,12 +139,12 @@
   </action>
   <action name="actionRastgele_S_nav_Yap">
    <property name="text">
-    <string>Rastgele Sınav Yap</string>
+    <string>Çoktan Seçmeli Sınav</string>
    </property>
   </action>
-  <action name="actionHakk_nda">
+  <action name="actionHafiza_Oyunu">
    <property name="text">
-    <string>Hakkında</string>
+    <string>Hafıza Oyunu</string>
    </property>
   </action>
   <action name="actionYard_m">

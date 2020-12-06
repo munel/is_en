@@ -7,6 +7,7 @@ from kelimeislemleri import YeniKelimeEkle
 from Sinav_coktan_secme import *
 from form import *
 import sqlite3
+from isaret_dili_hafiza_oyunu import HafizaOyunu
 
 
 
@@ -32,6 +33,7 @@ class MyForm(QMainWindow):
         self.ui.actionRastgele_S_nav_Yap.triggered.connect(self.sinavCoktanSecmeli)
         self.ui.actionKelime_Ekle.triggered.connect(self.yeniKelimeEkle)
         self.ui.actionKelime_Sil.triggered.connect(self.kelimeSil)
+        self.ui.actionHafiza_Oyunu.triggered.connect(self.hafizaOyunuAc)
 
         self.kelimeListesi = []
         self.kategoriListesi = []
@@ -51,10 +53,13 @@ class MyForm(QMainWindow):
         self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile("VIDEOLAR/RAHAT.mp4")))
         self.mediaPlayer.play()
 
-
-
-
         self.show()
+
+    def hafizaOyunuAc(self):
+        h = HafizaOyunu()
+        h.oyunuBaslat()
+
+
     def sinavCoktanSecmeli(self):
         self.Form = QtWidgets.QWidget()
         self.Form.ui = Sinav_coktan_secme()
