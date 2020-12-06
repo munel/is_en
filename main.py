@@ -3,19 +3,20 @@ from PyQt5.QtCore import QUrl, QDir
 from PyQt5.QtMultimedia import QMediaContent, QMediaPlayer
 from PyQt5.QtMultimediaWidgets import QVideoWidget
 from PyQt5.QtWidgets import QDialog, QApplication, QFileDialog, QInputDialog, QMainWindow, QLineEdit, QMessageBox
+
 from kelimeislemleri import YeniKelimeEkle
+from silinecekkelimeform import SilinecekKelimeForm
+from duzenlenecekkelimeform import DuzenlenecekKelimeForm
 from Sinav_coktan_secme import *
-from form import *
-import sqlite3
 from isaret_dili_hafiza_oyunu import HafizaOyunu
 
-
-
-conn = sqlite3.connect('Sozluk.db')
-
-def buyukHarfeCevir(metin):
-    dizi = ["İ" if m=="i" else m.upper() for m in metin]
-    return "".join(dizi)
+from form import *
+import sqlite3
+from kategoriBLL import KategoriBLL
+from kelimeBLL import KelimeBLL
+from entity import Kelime
+from entity import Kategori
+from helper import Helper
 
 
 class MyForm(QMainWindow):
@@ -29,12 +30,19 @@ class MyForm(QMainWindow):
         self.ui.comboBox.currentIndexChanged.connect(self.comboBoxSecim)
         self.ui.actionKategori_Ekle.triggered.connect(self.yeniKategoriEkle)
         self.ui.actionKategori_Sil.triggered.connect(self.kategoriSil)
-        self.ui.actionKategori_D_zenle.triggered.connect(self.kategoriDuzenle)
-        self.ui.actionRastgele_S_nav_Yap.triggered.connect(self.sinavCoktanSecmeli)
+        self.ui.actionKategori_Duzenle.triggered.connect(self.kategoriDuzenle)
+        self.ui.actionCoktanSecmeliSinav.triggered.connect(self.sinavCoktanSecmeli)
+        self.ui.actionHafizaOyunu.triggered.connect(self.hafizaOyunuAc)
+
         self.ui.actionKelime_Ekle.triggered.connect(self.yeniKelimeEkle)
         self.ui.actionKelime_Sil.triggered.connect(self.kelimeSil)
-        self.ui.actionHafiza_Oyunu.triggered.connect(self.hafizaOyunuAc)
+        self.ui.actionKelime_Duzenle.triggered.connect(self.kelimeDuzenle)
 
+        self.secilenKelime=Kelime()
+        self.secilenKategori = Kategori()
+        self.yeniKategori=Kategori()
+
+        self.silinecekKategori=Kategori()
         self.kelimeListesi = []
         self.kategoriListesi = []
         self.seciliListe = []
@@ -44,37 +52,25 @@ class MyForm(QMainWindow):
         self.comboListeHazirla()
 
         self.mediaPlayer = QMediaPlayer(None, QMediaPlayer.VideoSurface)
-        videoWidget = QVideoWidget(self)
+        videoWidget = QVideoWidget()
         self.ui.layout.addWidget(videoWidget)
-
-
-
         self.mediaPlayer.setVideoOutput(videoWidget)
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile("VIDEOLAR/RAHAT.mp4")))
+        ##self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile("VIDEOLAR/RAHAT.mp4")))
         self.mediaPlayer.play()
+
 
         self.show()
 
-    def hafizaOyunuAc(self):
-        h = HafizaOyunu()
-        h.oyunuBaslat()
-
-
-    def sinavCoktanSecmeli(self):
-        self.Form = QtWidgets.QWidget()
-        self.Form.ui = Sinav_coktan_secme()
-        self.Form.ui.show()
-
     def listeleriHazirla(self):
-        with conn:
-            cur = conn.cursor()
-            cur.execute("SELECT KELIME_ADI FROM KELIMELER")
-            kelimeListesiTupple = cur.fetchall()
-            cur.execute("SELECT GRUP_ADI FROM GRUPLAR")
-            kategoriListesiTupple = cur.fetchall()
-        self.kelimeListesi = [item[0] for item in kelimeListesiTupple]
-        self.kategoriListesi = [item[0] for item in kategoriListesiTupple]
-        self.kategoriListesi.insert(0, "Kategori Seçin")
+        try:
+
+            kelimeListesiTupple  = KelimeBLL.KelimeleriListele()
+            kategoriListesiTupple = KategoriBLL.KategorileriListele()
+            self.kelimeListesi = [item[0] for item in kelimeListesiTupple]
+            self.kategoriListesi = [item[0] for item in kategoriListesiTupple]
+            self.kategoriListesi.insert(0, "Kategori Seçin")
+        except Exception as exp:
+            print(exp)
 
 
     def yeniKelimeEkle(self):
@@ -87,135 +83,175 @@ class MyForm(QMainWindow):
             print(e)
         if self.yenikelimeEkle.exec_() == 1:
             self.listeleriHazirla()
-            self.ui.listWidget.clear()
-            self.ui.listWidget.addItems(self.kelimeListesi)
+            self.listeyiHazirla()
             QMessageBox.information(self, "Yeni Kelime", "Yeni Kelime Eklendi")
 
     def kelimeSil(self):
-        self.listeleriHazirla()
-        item, okPressed = QInputDialog.getItem(self, "Kelime Silme İşlemi", "Silineek Kelimeyi Seçin:",
-                                               self.kelimeListesi, 0, False)
-        if okPressed and item:
+        try:
+            self.kelimeSil = SilinecekKelimeForm()
+            self.kelimeSil.show()
+            if self.kelimeSil.close:
+                print("Kelime Sil Kapatıldı")
+        except Exception as e:
+            print(e)
+        if self.kelimeSil.exec_() == 1:
+            self.listeleriHazirla()
+            self.ui.listWidget.clear()
+            self.ui.listWidget.addItems(self.kelimeListesi)
+            QMessageBox.information(self, "Kelime Sil", "Kelime Silindi")
+            self.listeleriHazirla()
+            self.listeyiHazirla()
 
-            try:
-                with conn:
-                    cur = conn.cursor()
-                    cur.execute("DELETE FROM KELIMELER Where KELIME_ADI=(?)", [item])
 
 
-                self.ui.comboBox.clear()
-                self.ui.listWidget.clear()
-                self.listeleriHazirla()
-                self.ui.comboBox.addItems(self.kategoriListesi)
-                self.ui.listWidget.addItems(self.kelimeListesi)
-                QMessageBox.information(self, "Kelime Silme", "Kelime Silindi")
-            except Exception as e:
-                print(e)
+    def kelimeDuzenle(self):
+
+        print("Kelime Düzenle menü basıldı")
+        try:
+            self.KelimeDuzenle = DuzenlenecekKelimeForm()
+            print("Kelime Düzenle yaratıldı")
+            self.KelimeDuzenle.show()
+            if self.KelimeDuzenle.close:
+                print("Kelime Düzenle Kapatıldı")
+        except Exception as e:
+            print(e)
+        if self.KelimeDuzenle.exec_() == 1:
+            self.listeleriHazirla()
+            self.ui.listWidget.clear()
+            self.ui.listWidget.addItems(self.kelimeListesi)
+            QMessageBox.information(self, "Kelime Düzenle", "Kelime Düzeltildi.")
+            self.listeleriHazirla()
+            self.listeyiHazirla()
+
+
+
 
     def kategoriDuzenle(self):
         item, okPressed = QInputDialog.getItem(self, "Kategori Düzenleme", "Düzenlenecek Kategori:", self.kategoriListesi, 0,
                                                False)
-        if okPressed and item:
+        eskiKategori=Kategori()
+        eskiKategori.kategori=item
+        pass
+        if okPressed :
             if item != "Kategori Seçin":
                 duzenlenmis, ok = QInputDialog.getText(self, "Kategori Düzenle", f"Düzenlenen Kategori:  {item}",
                                                        QLineEdit.Normal, "")
-                if ok and item:
-                    with conn:
-                        cur = conn.cursor()
-                        cur.execute("UPDATE GRUPLAR SET GRUP_ADI = (?) WHERE GRUP_ADI=(?)", [duzenlenmis, item])
-                    self.kategoriListesi.remove(item)
-                    self.kategoriListesi.append(duzenlenmis)
-                    self.ui.comboBox.clear()
-                    self.ui.comboBox.addItems(self.kategoriListesi)
-                    self.ui.listWidget.clear()
-                    self.ui.listWidget.addItems(self.kelimeListesi)
-                    QMessageBox.information(self, "Düzenleme", "Kategori Düzenlendi")
+                yeniKategori = Kategori()
+                yeniKategori.kategori = duzenlenmis
+
+                if ok and yeniKategori.kategori:
+                    print(eskiKategori.kategori)
+                    print(yeniKategori.kategori)
+                    guncellendiMi = KategoriBLL.KategoriDuzenle(eskiKategori,yeniKategori)
+
+                    if guncellendiMi :
+                        QMessageBox.information(self, "Düzenleme", "Kategori Düzenlendi")
+                        self.listeleriHazirla()
+                        self.comboListeHazirla()
+                        self.listeyiHazirla()
+
+                    else :
+                        QMessageBox.warning(self, "Düzenleme", "Kategori Düzenlenmedi")
+                else:
+                    QMessageBox.information(self, "Düzenleme", "Vazgeçildi.")
+            else:
+                QMessageBox.warning(self, "Düzenleme", "Kategori seçmediğiniz için iptal edildi.")
+        else:
+            QMessageBox.information(self, "Düzenleme", "Vazgeçildi.")
 
     def yeniKategoriEkle(self):
-        yeniKategori, okPressed = QInputDialog.getText(self, "Kategori Ekleme", "Yeni Kategori:", QLineEdit.Normal, "")
-        if okPressed and yeniKategori != '':
-            # kategoriler tablosuna yeni kategori eklenecek
-            try:
-                with conn:
-                    cur = conn.cursor()
-                    cur.execute("INSERT INTO GRUPLAR (GRUP_ADI) VALUES (?)",
-                                [yeniKategori])
-                print(yeniKategori)
-                self.kategoriListesi.append(yeniKategori)
-                self.ui.comboBox.clear()
-                self.ui.comboBox.addItems(self.kategoriListesi)
-                self.ui.listWidget.clear()
-                self.ui.listWidget.addItems(self.kelimeListesi)
-                QMessageBox.information(self, "Kategori Ekleme", "Yeni Kategori Eklendi")
-            except Exception as e:
-                print(e)
+        try:
+            yazilanYeniKategori, okPressed = QInputDialog.getText(self, "Kategori Ekleme", "Yeni Kategori:", QLineEdit.Normal, "")
+            self.yeniKategori.kategori=Helper.KucukHarfleriBuyukYap(yazilanYeniKategori)
+            if okPressed and self.yeniKategori.kategori != '':
+                # kategoriler tablosuna yeni kategori eklenecek
+
+                    eklendiMi= KategoriBLL.KategoriEkle(self.yeniKategori)
+
+                    if (eklendiMi):
+                        QMessageBox.information(self, "Kategori Ekleme", "Yeni Kategori Eklendi")
+
+                        self.listeleriHazirla()
+                        self.comboListeHazirla()
+                        self.listeyiHazirla()
+                    else:
+                        raise Exception("Sql kayıt eklenemedi.")
+
+        except Exception as e:
+            print(e)
+            QMessageBox.warning(self, "Kategori Ekleme", "Yeni Kategori Eklenemedi.")
 
     def kategoriSil(self):
-        item, okPressed = QInputDialog.getItem(self, "Kategori Silme İşlemi", "Silineek Kategoriyi Seçin:",
-                                               self.kategoriListesi, 0, False)
-        if okPressed and item:
-            if item != "Kategori Seçin":
-                try:
-                    with conn:
-                        cur = conn.cursor()
-                        cur.execute("DELETE FROM GRUPLAR Where GRUP_ADI=(?)", [item])
+        try:
+            self.silinecekKategori.kategori, okPressed = QInputDialog.getItem(self, "Kategori Silme İşlemi", "Silinecek Kategoriyi Seçin:",
+                                                   self.kategoriListesi, 0, False)
+            if okPressed and self.silinecekKategori.kategori:
+                if self.silinecekKategori.kategori != "Kategori Seçin":
 
-                    self.kategoriListesi.remove(item)
-                    self.ui.comboBox.clear()
-                    self.ui.comboBox.addItems(self.kategoriListesi)
+                    KategoriBLL.KategoriSil(Kategori)
+
+                    self.listeleriHazirla()
+
+                    self.comboListeHazirla()
+
                     self.ui.listWidget.clear()
                     self.ui.listWidget.addItems(self.kelimeListesi)
                     QMessageBox.information(self, "Kategroi Silme", "Kategori Silindi")
-                except Exception as e:
-                    print(e)
+                else :
+                    QMessageBox.warning(self, "Kategroi Silme", "Bu seçenek silinemez.")
+        except Exception as exp:
+            print(exp)
+
 
     def comboBoxSecim(self):
+        self.secilenKategori.kategori = self.ui.comboBox.itemText(self.ui.comboBox.currentIndex())
 
-        kategori = self.ui.comboBox.itemText(self.ui.comboBox.currentIndex())
-        if (self.ui.comboBox.currentIndex() != 0):
+        if (self.ui.comboBox.currentIndex() != 0):  # düzeltilmesi gerekiyor  bütün hepsinde çıkması lazım
             try:
-                with conn:
-                    cur = conn.cursor()
-                    cur.execute("SELECT KELIME_ADI FROM WR_GRUP_KELIMELERI WHERE GRUP_ADI=(?)", [kategori])
-                    sonuc = cur.fetchall()
-                seciliListe = [item[0] for item in sonuc]
+                kelimeListesi = KategoriBLL.KategoriyeAitKelimeler(self.secilenKategori)
                 self.ui.listWidget.clear()
-                self.ui.listWidget.addItems(seciliListe)
+                self.ui.listWidget.addItems(kelimeListesi)
             except Exception as e:
                 print(e)
 
     def comboListeHazirla(self):
+        self.ui.comboBox.clear()
         self.ui.comboBox.addItems(self.kategoriListesi)
 
     def listeyiHazirla(self):
+        self.ui.listWidget.clear()
         self.ui.listWidget.addItems(self.kelimeListesi)
 
     def videoyuOynat(self, video):
+        ##self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile("VIDEOLAR/RAHAT.mp4")))
         self.mediaPlayer.setMedia(
             QMediaContent(QUrl.fromLocalFile(video)))
         self.mediaPlayer.play()
 
     def listedeKiElemanSecildi(self):
-        d = self.ui.listWidget.currentItem()
-        with conn:
-            cur = conn.cursor()
-            cur.execute("SELECT KELIME_YOLU FROM KELIMELER Where KELIME_ADI=(?)", [d.text()])
-            sonuc = cur.fetchone()[0]
+        self.secilenKelime.kelime = self.ui.listWidget.currentItem().text()
+        sonuc = KelimeBLL.KelimeVideoBul(self.secilenKelime)
         print(sonuc)
         self.videoyuOynat(sonuc)
 
-    def rastgeleSinav(self):
-        pass
+    def sinavCoktanSecmeli(self):
+        self.Form = QtWidgets.QWidget()
+        self.Form.ui = Sinav_coktan_secme()
+        self.Form.ui.show()
 
     def aramaMetniDegistir(self):
         self.ui.listWidget.clear()
         self.seciliListe.clear()
         aramaMetni = self.ui.lineEdit.text()
         for v in self.kelimeListesi:
-            if v.startswith(buyukHarfeCevir(aramaMetni)):
+            if v.startswith(Helper.KucukHarfleriBuyukYap(aramaMetni)):
                 self.seciliListe.append(v)
 
         self.ui.listWidget.addItems(self.seciliListe)
+
+    def hafizaOyunuAc(self):
+        h = HafizaOyunu()
+        h.oyunuBaslat()
 
 
 if __name__ == "__main__":

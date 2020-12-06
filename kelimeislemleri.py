@@ -5,25 +5,28 @@ from PyQt5.QtCore import QUrl
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtMultimediaWidgets import QVideoWidget
 from PyQt5.QtWidgets import QDialog, QWidget, QFileDialog
-
+from pathlib import Path
 import sqlite3
-import shutil
-import string
-conn = sqlite3.connect('Sozluk.db')
 
-def buyukHarfeCevir(metin):
-    dizi = ["İ" if m=="i" else m.upper() for m in metin]
-    return "".join(dizi)
+import string
+
+conn = sqlite3.connect('Sozluk.db')
+from entity import Kelime
+from entity import Video
+from entity import Kategori
+from kelimeBLL import KelimeBLL
+from kategoriBLL import KategoriBLL
+from videoBLL import VideoBLL
+from helper import Helper
 
 class YeniKelimeEkle(QDialog):
     def __init__(self):
+        self.yeniKelimObj= Kelime()
+        self.yeniVideoObj=Video()
+        self.yeniKategoriObj = Kategori()
         super(YeniKelimeEkle, self).__init__()
         self.setWindowTitle("Yeni Kelime Ekle")
         self.setFixedSize(400, 300)
-        self.secilenler = []
-        self.kelime = ""
-        self.orjinalYol = ""
-        self.hedef = ""
         self.uiHazirla()
 
     def uiHazirla(self):
@@ -68,11 +71,9 @@ class YeniKelimeEkle(QDialog):
 
         self.actionsHazirla()
 
-        with conn:
-            cur = conn.cursor()
-            cur.execute("SELECT GRUP_ADI FROM GRUPLAR")
-            kategoriListesiTupple = cur.fetchall()
-            self.kategoriListesi = [item[0] for item in kategoriListesiTupple]
+
+        kategoriListesiTupple = KategoriBLL.KategorileriListele()
+        self.kategoriListesi = [item[0] for item in kategoriListesiTupple]
         self.listWidgetYKelime.addItems(self.kategoriListesi)
 
 
@@ -83,9 +84,9 @@ class YeniKelimeEkle(QDialog):
         self.pushButtonYKVideoEkle.clicked.connect(self.videoSec)
 
     def videoSec(self):
-        self.orjinalYol, _ = QFileDialog.getOpenFileName(self, "Open Video")
+        baslangicYol = str(Path.home()) + "\Desktop"
+        self.orjinalYol, _ = QFileDialog.getOpenFileName(self, "Video Seçiniz", baslangicYol, "Video dosyası (*.mp4);;Tüm dosyalar (*.*)")
         if self.orjinalYol != '':
-
             self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(self.orjinalYol)))
             self.mediaPlayer.play()
             dosyaAdiHam = self.orjinalYol.split("/")[-1]
@@ -94,35 +95,44 @@ class YeniKelimeEkle(QDialog):
             print(ad)
             aduzanti = ad + "." + dosyaAdiHam.split(".")[-1]
             self.hedef = "VIDEOLAR/" + aduzanti
-   
+
+            self.yeniVideoObj.secilenvideoAdi = dosyaAdiHam
+            self.yeniVideoObj.kaydedilecekVideoAdi = aduzanti
+            self.yeniVideoObj.videoKaynakYol = self.orjinalYol
+            self.yeniVideoObj.videoHedefYol = self.hedef
 
 
 
     def yeniKelimeyiKaydetFonk(self):
-        self.kelime = self.yeniKelimeEkleText.text()
-        if self.kelime == "" or len(self.secilenler)==0 or self.orjinalYol == "":
+        print("Kaydet Başladı")
+        self.yeniKelimObj.kelime=Helper.KucukHarfleriBuyukYap(self.yeniKelimeEkleText.text())
+        print("if çalışacak")
+        if self.yeniKelimObj.kelime == "" or len(self.yeniKategoriObj.kategoriler)==0 or self.yeniVideoObj.videoKaynakYol == "":
             print("Boş Bırakıldı")
         else:
-            shutil.copy(self.orjinalYol, self.hedef)
-            with conn:
-                cur = conn.cursor()
-                cur.execute("INSERT INTO KELIMELER (KELIME_ADI,KELIME_YOLU) VALUES(?,?)",[buyukHarfeCevir(self.kelime),self.hedef])
-                kelimeId = cur.lastrowid
-                for g in self.secilenler:
-                    cur.execute("SELECT ID FROM GRUPLAR WHERE GRUP_ADI=(?)",[g])
-                    idH = cur.fetchone()
-                    groupId = idH[0]
-                    cur.execute("INSERT INTO GRUP_KELIMELERI (GRUP_ID,KELIME_ID) VALUES(?,?)",[groupId,kelimeId])
+            print("Video BLL başlayacak")
+            sonucVideo = VideoBLL.VideoKopyala(self.yeniVideoObj)
+            print("Kelime BLL başlayacak")
+            eklenenKayitId = KelimeBLL.YeniKelimeEkle(self.yeniKelimObj,self.yeniVideoObj)
+            print("Kategori BLL başlayacak")
+
+            sonucKategori =KategoriBLL.KategoriKelimeIdEkle(eklenenKayitId,self.yeniKategoriObj)
+
+            if (sonucVideo and sonucKategori and eklenenKayitId!=-1) :
+                print("self done 1")
                 self.done(1)
-
-
-
+            else:
+                print("self done 0")
+                print(sonucVideo)
+                print(eklenenKayitId)
+                print(sonucKategori)
+                self.done(-1)
 
 
     def listedenSecimleriAyarlar(self):
         sectim = self.listWidgetYKelime.selectedItems()
-        self.secilenler = [s.text() for s in sectim]
-        print(self.secilenler)
+        self.yeniKategoriObj.kategoriler = [s.text() for s in sectim]
+        print(self.yeniKategoriObj.kategoriler)
 
 
 
