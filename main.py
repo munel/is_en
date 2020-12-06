@@ -9,6 +9,7 @@ from silinecekkelimeform import SilinecekKelimeForm
 from duzenlenecekkelimeform import DuzenlenecekKelimeForm
 from Sinav_coktan_secme import *
 from isaret_dili_hafiza_oyunu import HafizaOyunu
+from kisacevapmain import KisaCevapFrom
 
 from form import *
 import sqlite3
@@ -33,6 +34,7 @@ class MyForm(QMainWindow):
         self.ui.actionKategori_Duzenle.triggered.connect(self.kategoriDuzenle)
         self.ui.actionCoktanSecmeliSinav.triggered.connect(self.sinavCoktanSecmeli)
         self.ui.actionHafizaOyunu.triggered.connect(self.hafizaOyunuAc)
+        self.ui.actionKisaCevap.triggered.connect(self.kisacevapOyunuAc)
 
         self.ui.actionKelime_Ekle.triggered.connect(self.yeniKelimeEkle)
         self.ui.actionKelime_Sil.triggered.connect(self.kelimeSil)
@@ -252,6 +254,10 @@ class MyForm(QMainWindow):
     def hafizaOyunuAc(self):
         h = HafizaOyunu()
         h.oyunuBaslat()
+    def kisacevapOyunuAc(self):
+        KisaCevapFrom()
+
+
 
 
 if __name__ == "__main__":

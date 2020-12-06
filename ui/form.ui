@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>714</width>
-    <height>369</height>
+    <width>722</width>
+    <height>366</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -55,10 +55,10 @@
     </property>
     <layout class="QHBoxLayout" name="layout">
      <property name="spacing">
-      <number>6</number>
+      <number>0</number>
      </property>
      <property name="sizeConstraint">
-      <enum>QLayout::SetMinimumSize</enum>
+      <enum>QLayout::SetNoConstraint</enum>
      </property>
     </layout>
    </widget>
@@ -68,7 +68,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>714</width>
+     <width>722</width>
      <height>21</height>
     </rect>
    </property>
@@ -77,7 +77,7 @@
      <string>Kelimeler</string>
     </property>
     <addaction name="actionKelime_Ekle"/>
-    <addaction name="actionKelime_D_zenle"/>
+    <addaction name="actionKelime_Duzenle"/>
     <addaction name="actionKelime_Sil"/>
    </widget>
    <widget class="QMenu" name="menuKategoriler">
@@ -85,26 +85,19 @@
      <string>Kategoriler</string>
     </property>
     <addaction name="actionKategori_Ekle"/>
-    <addaction name="actionKategori_D_zenle"/>
+    <addaction name="actionKategori_Duzenle"/>
     <addaction name="actionKategori_Sil"/>
-   </widget>
-   <widget class="QMenu" name="menuS_nav">
-    <property name="title">
-     <string>Sınav</string>
-    </property>
-    <addaction name="actionRastgele_S_nav_Yap"/>
    </widget>
    <widget class="QMenu" name="menuHakk_nda">
     <property name="title">
-     <string>Hakkında</string>
+     <string>Eğlence</string>
     </property>
-    <addaction name="actionHakk_nda"/>
-    <addaction name="separator"/>
-    <addaction name="actionYard_m"/>
+    <addaction name="actionHafizaOyunu"/>
+    <addaction name="actionCoktanSecmeliSinav"/>
+    <addaction name="actionKisaCevap"/>
    </widget>
    <addaction name="menuKelimeler"/>
    <addaction name="menuKategoriler"/>
-   <addaction name="menuS_nav"/>
    <addaction name="menuHakk_nda"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -113,7 +106,7 @@
     <string>Kelime Ekle</string>
    </property>
   </action>
-  <action name="actionKelime_D_zenle">
+  <action name="actionKelime_Duzenle">
    <property name="text">
     <string>Kelime Düzenle</string>
    </property>
@@ -128,7 +121,7 @@
     <string>Kategori Ekle</string>
    </property>
   </action>
-  <action name="actionKategori_D_zenle">
+  <action name="actionKategori_Duzenle">
    <property name="text">
     <string>Kategori Düzenle</string>
    </property>
@@ -140,17 +133,27 @@
   </action>
   <action name="actionRastgele_S_nav_Yap">
    <property name="text">
-    <string>Rastgele Sınav Yap</string>
+    <string>Çoktan Seçmeli Sınav</string>
    </property>
   </action>
-  <action name="actionHakk_nda">
+  <action name="actionHafizaOyunu">
    <property name="text">
-    <string>Hakkında</string>
+    <string>Hafıza Oyunu</string>
    </property>
   </action>
   <action name="actionYard_m">
    <property name="text">
     <string>Yardım</string>
+   </property>
+  </action>
+  <action name="actionCoktanSecmeliSinav">
+   <property name="text">
+    <string>Çoktan Seçmeli Sınav</string>
+   </property>
+  </action>
+  <action name="actionKisaCevap">
+   <property name="text">
+    <string>Kısa Cevaplı Sınav</string>
    </property>
   </action>
  </widget>
