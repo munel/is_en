@@ -22,7 +22,7 @@ class KategoriBLL:
 
     @staticmethod
     def KategoriSil(kategori=Kategori()):
-       return KategoriDAL.KategoriSil(kategori)
+        return KategoriDAL.KategoriSil(kategori)
 
     @staticmethod
     def KategoriDuzenle(eskiKategori=Kategori(), yeniKategori=Kategori()):

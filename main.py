@@ -188,7 +188,7 @@ class MyForm(QMainWindow):
             if okPressed and self.silinecekKategori.kategori:
                 if self.silinecekKategori.kategori != "Kategori Seçin":
 
-                    KategoriBLL.KategoriSil(Kategori)
+                    KategoriBLL.KategoriSil(self.silinecekKategori)
 
                     self.listeleriHazirla()
 
