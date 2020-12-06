@@ -1,220 +1,146 @@
-import sys
-from PyQt5.QtCore import QUrl, QDir
-from PyQt5.QtMultimedia import QMediaContent, QMediaPlayer
-from PyQt5.QtMultimediaWidgets import QVideoWidget
-from PyQt5.QtWidgets import QDialog, QApplication, QFileDialog, QInputDialog, QMainWindow, QLineEdit, QMessageBox
-from kelimeislemleri import YeniKelimeEkle
-from Sinav_coktan_secme import *
-from form import *
-import sqlite3
+# This is a sample Python script.
+
+# Press Shift+F10 to execute it or replace it with your code.
+# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from tkinter import *
+from random import random
+import time
+from tkinter import messagebox
+
+pencere = Tk()
+hafiza = []
+global bilinen
+
+bilinen = 0
+pencere.title("İşaret Dili Alfabesi Hafıza Oyununa Hoşgeldiniz")
+Res_1=PhotoImage(file="resim/0.png",width=80,height=80)
+Res_2=PhotoImage(file="resim/1.png",width=80,height=80)
+Res_3=PhotoImage(file="resim/2.png",width=80,height=80)
+Res_4=PhotoImage(file="resim/3.png",width=80,height=80)
+Res_5=PhotoImage(file="resim/4.png",width=80,height=80)
+Res_6=PhotoImage(file="resim/5.png",width=80,height=80)
+Res_7=PhotoImage(file="resim/6.png",width=80,height=80)
+Res_8=PhotoImage(file="resim/7.png",width=80,height=80)
+Res_9=PhotoImage(file="resim/8.png",width=80,height=80)
+Res_10=PhotoImage(file="resim/9.png",width=80,height=80)
+Res_11=PhotoImage(file="resim/10.png",width=80,height=80)
+Res_12=PhotoImage(file="resim/11.png",width=80,height=80)
+Res_13=PhotoImage(file="resim/12.png",width=80,height=80)
+Res_14=PhotoImage(file="resim/13.png",width=80,height=80)
+Res_15=PhotoImage(file="resim/14.png",width=80,height=80)
+Res_16=PhotoImage(file="resim/15.png",width=80,height=80)
+Res_17=PhotoImage(file="resim/16.png",width=80,height=80)
+Res_18=PhotoImage(file="resim/17.png",width=80,height=80)
+Res_19=PhotoImage(file="resim/18.png",width=80,height=80)
+Res_20=PhotoImage(file="resim/19.png",width=80,height=80)
+Res_21=PhotoImage(file="resim/20.png",width=80,height=80)
+Res_22=PhotoImage(file="resim/21.png",width=80,height=80)
+Res_23=PhotoImage(file="resim/22.png",width=80,height=80)
+Res_24=PhotoImage(file="resim/23.png",width=80,height=80)
+Res_25=PhotoImage(file="resim/24.png",width=80,height=80)
+Res_26=PhotoImage(file="resim/25.png",width=80,height=80)
+Res_27=PhotoImage(file="resim/26.png",width=80,height=80)
+Res_28=PhotoImage(file="resim/27.png",width=80,height=80)
+resimler=[]
+resimler.append(Res_1)
+resimler.append(Res_2)
+resimler.append(Res_3)
+resimler.append(Res_4)
+resimler.append(Res_5)
+resimler.append(Res_6)
+resimler.append(Res_7)
+resimler.append(Res_8)
+resimler.append(Res_9)
+resimler.append(Res_10)
+resimler.append(Res_11)
+resimler.append(Res_12)
+resimler.append(Res_13)
+resimler.append(Res_14)
+resimler.append(Res_15)
+resimler.append(Res_16)
+resimler.append(Res_17)
+resimler.append(Res_18)
+resimler.append(Res_19)
+resimler.append(Res_20)
+resimler.append(Res_21)
+resimler.append(Res_22)
+resimler.append(Res_23)
+resimler.append(Res_24)
+resimler.append(Res_25)
+resimler.append(Res_26)
+resimler.append(Res_27)
+resimler.append(Res_28)
 
 
 
-conn = sqlite3.connect('Sozluk.db')
-
-def buyukHarfeCevir(metin):
-    dizi = ["İ" if m=="i" else m.upper() for m in metin]
-    return "".join(dizi)
 
 
-class MyForm(QMainWindow):
-    def __init__(self):
-        super().__init__()
-        self.ui = Ui_MainWindow()
-        self.ui.setupUi(self)
+def cevir(a):
+    if len(hafiza) == 0:
+        for i in atananlar:
+            if a == i[0]:
+                ilk_buton = i[2]
 
-        self.ui.lineEdit.textChanged.connect(self.aramaMetniDegistir)
-        self.ui.listWidget.itemClicked.connect(self.listedeKiElemanSecildi)
-        self.ui.comboBox.currentIndexChanged.connect(self.comboBoxSecim)
-        self.ui.actionKategori_Ekle.triggered.connect(self.yeniKategoriEkle)
-        self.ui.actionKategori_Sil.triggered.connect(self.kategoriSil)
-        self.ui.actionKategori_D_zenle.triggered.connect(self.kategoriDuzenle)
-        self.ui.actionRastgele_S_nav_Yap.triggered.connect(self.sinavCoktanSecmeli)
-        self.ui.actionKelime_Ekle.triggered.connect(self.yeniKelimeEkle)
-        self.ui.actionKelime_Sil.triggered.connect(self.kelimeSil)
-
-        self.kelimeListesi = []
-        self.kategoriListesi = []
-        self.seciliListe = []
-        self.listeleriHazirla()
-
-        self.listeyiHazirla()
-        self.comboListeHazirla()
-
-        self.mediaPlayer = QMediaPlayer(None, QMediaPlayer.VideoSurface)
-        videoWidget = QVideoWidget(self)
-        self.ui.layout.addWidget(videoWidget)
+                ##y = PhotoImage(file=str(i[1]) + ".png", width=50, height=50)
+                ilk_buton.config(text=i[1], image=resimler[int(i[1])], state="normal")
+                hafiza.append(i)
+                print(hafiza)
+    else:
+        for i in atananlar:
+            if a == i[0]:
+                ikinci_buton = i[2]
+                ##k = PhotoImage(file=str(i[1]) + ".png",width=50, height=50)
+                ikinci_buton.config(text=i[1], image=resimler[int(i[1])], state="normal")
+                if i[1] == hafiza[0][1]:
+                    global bilinen
+                    bilinen = bilinen + 1
+                    hafiza.clear()
+                    if bilinen == 18:
+                        messagebox.showinfo("hafıza oyunu",
+                                            "Tebrikler!Tüm eşleştirmeleri başarıyla gerçekleştirdiniz")
+                else:
+                    ikinci_buton.after(100, lambda x=i[2]: cevirici(x))
 
 
-
-        self.mediaPlayer.setVideoOutput(videoWidget)
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile("VIDEOLAR/RAHAT.mp4")))
-        self.mediaPlayer.play()
-
-
-
-
-        self.show()
-    def sinavCoktanSecmeli(self):
-        self.Form = QtWidgets.QWidget()
-        self.Form.ui = Sinav_coktan_secme()
-        self.Form.ui.show()
-
-    def listeleriHazirla(self):
-        with conn:
-            cur = conn.cursor()
-            cur.execute("SELECT KELIME_ADI FROM KELIMELER")
-            kelimeListesiTupple = cur.fetchall()
-            cur.execute("SELECT GRUP_ADI FROM GRUPLAR")
-            kategoriListesiTupple = cur.fetchall()
-        self.kelimeListesi = [item[0] for item in kelimeListesiTupple]
-        self.kategoriListesi = [item[0] for item in kategoriListesiTupple]
-        self.kategoriListesi.insert(0, "Kategori Seçin")
+def cevirici(ikinci_buton):
+    birinci_buton = hafiza[0][2]
+    birinci_buton.config(text="eşimi bul", image=m, state="active")
+    ikinci_buton.config(text="eşimi bul", image=m, state="active")
+    time.sleep(0.5)
+    hafiza.clear()
 
 
-    def yeniKelimeEkle(self):
-        try:
-            self.yenikelimeEkle = YeniKelimeEkle()
-            self.yenikelimeEkle.show()
-            if self.yenikelimeEkle.close:
-                print("Deneme")
-        except Exception as e:
-            print(e)
-        if self.yenikelimeEkle.exec_() == 1:
-            self.listeleriHazirla()
-            self.ui.listWidget.clear()
-            self.ui.listWidget.addItems(self.kelimeListesi)
-            QMessageBox.information(self, "Yeni Kelime", "Yeni Kelime Eklendi")
+icerikler = [0, 1, 2, 3, 4, 5, 6, 7,8,9,10,11,12,13,14,15,16,17]
 
-    def kelimeSil(self):
-        self.listeleriHazirla()
-        item, okPressed = QInputDialog.getItem(self, "Kelime Silme İşlemi", "Silineek Kelimeyi Seçin:",
-                                               self.kelimeListesi, 0, False)
-        if okPressed and item:
+icerikler = icerikler * 2
+atananlar = []
+satirno = 0
 
-            try:
-                with conn:
-                    cur = conn.cursor()
-                    cur.execute("DELETE FROM KELIMELER Where KELIME_ADI=(?)", [item])
+m = PhotoImage(file="resim/kapat.png",  width=80, height=80)
+messagebox.showinfo("hafıza oyunu",
+                                            "Kartların üstüne tıklayarak işaret dili harflerinin eşlerini bulabilir misin?")
+for satir in range(0, 6):
+    sutunno = 0
+    for sutun in range(0, 6):
+        deger = len(icerikler)
+
+        ilk = str(satirno) + str(sutunno)
+        ikinci = int(random() * deger)
 
 
-                self.ui.comboBox.clear()
-                self.ui.listWidget.clear()
-                self.listeleriHazirla()
-                self.ui.comboBox.addItems(self.kategoriListesi)
-                self.ui.listWidget.addItems(self.kelimeListesi)
-                QMessageBox.information(self, "Kelime Silme", "Kelime Silindi")
-            except Exception as e:
-                print(e)
 
-    def kategoriDuzenle(self):
-        item, okPressed = QInputDialog.getItem(self, "Kategori Düzenleme", "Düzenlenecek Kategori:", self.kategoriListesi, 0,
-                                               False)
-        if okPressed and item:
-            if item != "Kategori Seçin":
-                duzenlenmis, ok = QInputDialog.getText(self, "Kategori Düzenle", f"Düzenlenen Kategori:  {item}",
-                                                       QLineEdit.Normal, "")
-                if ok and item:
-                    with conn:
-                        cur = conn.cursor()
-                        cur.execute("UPDATE GRUPLAR SET GRUP_ADI = (?) WHERE GRUP_ADI=(?)", [duzenlenmis, item])
-                    self.kategoriListesi.remove(item)
-                    self.kategoriListesi.append(duzenlenmis)
-                    self.ui.comboBox.clear()
-                    self.ui.comboBox.addItems(self.kategoriListesi)
-                    self.ui.listWidget.clear()
-                    self.ui.listWidget.addItems(self.kelimeListesi)
-                    QMessageBox.information(self, "Düzenleme", "Kategori Düzenlendi")
+        butonx = Button(pencere, text="eşimi bul", image=m,
+                        command=lambda a=ilk: cevir(a))
+        atanacak = (ilk, icerikler[ikinci], butonx)
+        atananlar.append(atanacak)
 
-    def yeniKategoriEkle(self):
-        yeniKategori, okPressed = QInputDialog.getText(self, "Kategori Ekleme", "Yeni Kategori:", QLineEdit.Normal, "")
-        if okPressed and yeniKategori != '':
-            # kategoriler tablosuna yeni kategori eklenecek
-            try:
-                with conn:
-                    cur = conn.cursor()
-                    cur.execute("INSERT INTO GRUPLAR (GRUP_ADI) VALUES (?)",
-                                [yeniKategori])
-                print(yeniKategori)
-                self.kategoriListesi.append(yeniKategori)
-                self.ui.comboBox.clear()
-                self.ui.comboBox.addItems(self.kategoriListesi)
-                self.ui.listWidget.clear()
-                self.ui.listWidget.addItems(self.kelimeListesi)
-                QMessageBox.information(self, "Kategori Ekleme", "Yeni Kategori Eklendi")
-            except Exception as e:
-                print(e)
+        icerikler.pop(ikinci)
 
-    def kategoriSil(self):
-        item, okPressed = QInputDialog.getItem(self, "Kategori Silme İşlemi", "Silineek Kategoriyi Seçin:",
-                                               self.kategoriListesi, 0, False)
-        if okPressed and item:
-            if item != "Kategori Seçin":
-                try:
-                    with conn:
-                        cur = conn.cursor()
-                        cur.execute("DELETE FROM GRUPLAR Where GRUP_ADI=(?)", [item])
+        print(atananlar)
+        butonx.grid(row=satirno, column=sutunno)
+        sutunno = sutunno + 1
+    satirno += 1
 
-                    self.kategoriListesi.remove(item)
-                    self.ui.comboBox.clear()
-                    self.ui.comboBox.addItems(self.kategoriListesi)
-                    self.ui.listWidget.clear()
-                    self.ui.listWidget.addItems(self.kelimeListesi)
-                    QMessageBox.information(self, "Kategroi Silme", "Kategori Silindi")
-                except Exception as e:
-                    print(e)
+pencere.mainloop()
 
-    def comboBoxSecim(self):
-
-        kategori = self.ui.comboBox.itemText(self.ui.comboBox.currentIndex())
-        if (self.ui.comboBox.currentIndex() != 0):
-            try:
-                with conn:
-                    cur = conn.cursor()
-                    cur.execute("SELECT KELIME_ADI FROM WR_GRUP_KELIMELERI WHERE GRUP_ADI=(?)", [kategori])
-                    sonuc = cur.fetchall()
-                seciliListe = [item[0] for item in sonuc]
-                self.ui.listWidget.clear()
-                self.ui.listWidget.addItems(seciliListe)
-            except Exception as e:
-                print(e)
-
-    def comboListeHazirla(self):
-        self.ui.comboBox.addItems(self.kategoriListesi)
-
-    def listeyiHazirla(self):
-        self.ui.listWidget.addItems(self.kelimeListesi)
-
-    def videoyuOynat(self, video):
-        self.mediaPlayer.setMedia(
-            QMediaContent(QUrl.fromLocalFile(video)))
-        self.mediaPlayer.play()
-
-    def listedeKiElemanSecildi(self):
-        d = self.ui.listWidget.currentItem()
-        with conn:
-            cur = conn.cursor()
-            cur.execute("SELECT KELIME_YOLU FROM KELIMELER Where KELIME_ADI=(?)", [d.text()])
-            sonuc = cur.fetchone()[0]
-        print(sonuc)
-        self.videoyuOynat(sonuc)
-
-    def rastgeleSinav(self):
-        pass
-
-    def aramaMetniDegistir(self):
-        self.ui.listWidget.clear()
-        self.seciliListe.clear()
-        aramaMetni = self.ui.lineEdit.text()
-        for v in self.kelimeListesi:
-            if v.startswith(buyukHarfeCevir(aramaMetni)):
-                self.seciliListe.append(v)
-
-        self.ui.listWidget.addItems(self.seciliListe)
-
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    w = MyForm()
-    w.show()
-    sys.exit(app.exec_())
+# Press the green button in the gutter to run the script.
