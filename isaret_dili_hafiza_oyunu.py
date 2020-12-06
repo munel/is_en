@@ -84,7 +84,7 @@ class HafizaOyunu:
             x = (ws/2) - (w/2)
             y = (hs/2) - (h/2)
             pencere.geometry('%dx%d+%d+%d' % (w, h, x, y))
-            
+
         def cevir(a):
             if len(hafiza) == 0:
                 for i in atananlar:
@@ -122,8 +122,7 @@ class HafizaOyunu:
 
         satirno = 0
         m = PhotoImage(file="resim/kapat.png", width=80, height=80)
-        messagebox.showinfo("hafıza oyunu",
-                            "Kartların üstüne tıklayarak işaret dili harflerinin eşlerini bulabilir misin?")
+
         for satir in range(0, 6):
             sutunno = 0
             for sutun in range(0, 6):
@@ -139,4 +138,6 @@ class HafizaOyunu:
                 butonx.grid(row=satirno, column=sutunno)
                 sutunno = sutunno + 1
             satirno += 1
+        # messagebox.showinfo("hafıza oyunu",
+        #                     "Kartların üstüne tıklayarak işaret dili harflerinin eşlerini bulabilir misin?")
         pencere.mainloop()
