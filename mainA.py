@@ -265,7 +265,7 @@ class MyForm(QMainWindow):
             self.uyariLbl.show()
 
         else:
-            conn = sqlite3.connect('Sozluk.db')
+            conn = sqlite3.connect('../../is_en-master-OOP/Sozluk.db')
             cur = conn.cursor()
             cur.execute("SELECT KELIME_YOLU FROM KELIMELER WHERE KELIME_ADI=?", [guess["transcription"].upper()])
             data = cur.fetchone()
