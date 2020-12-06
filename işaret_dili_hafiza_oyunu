@@ -80,7 +80,6 @@ def cevir(a):
         for i in atananlar:
             if a == i[0]:
                 ilk_buton = i[2]
-
                 ##y = PhotoImage(file=str(i[1]) + ".png", width=50, height=50)
                 ilk_buton.config(text=i[1], image=resimler[int(i[1])], state="normal")
                 hafiza.append(i)
