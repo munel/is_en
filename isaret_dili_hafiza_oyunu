@@ -71,10 +71,6 @@ resimler.append(Res_26)
 resimler.append(Res_27)
 resimler.append(Res_28)
 
-
-
-
-
 def cevir(a):
     if len(hafiza) == 0:
         for i in atananlar:
@@ -107,14 +103,10 @@ def cevirici(ikinci_buton):
     ikinci_buton.config(text="eşimi bul", image=m, state="active")
     time.sleep(0.5)
     hafiza.clear()
-
-
 icerikler = [0, 1, 2, 3, 4, 5, 6, 7,8,9,10,11,12,13,14,15,16,17]
-
 icerikler = icerikler * 2
 atananlar = []
 satirno = 0
-
 m = PhotoImage(file="resim/kapat.png",  width=80, height=80)
 messagebox.showinfo("hafıza oyunu",
                                             "Kartların üstüne tıklayarak işaret dili harflerinin eşlerini bulabilir misin?")
@@ -122,24 +114,17 @@ for satir in range(0, 6):
     sutunno = 0
     for sutun in range(0, 6):
         deger = len(icerikler)
-
         ilk = str(satirno) + str(sutunno)
         ikinci = int(random() * deger)
-
-
-
         butonx = Button(pencere, text="eşimi bul", image=m,
                         command=lambda a=ilk: cevir(a))
         atanacak = (ilk, icerikler[ikinci], butonx)
         atananlar.append(atanacak)
-
         icerikler.pop(ikinci)
-
         print(atananlar)
         butonx.grid(row=satirno, column=sutunno)
         sutunno = sutunno + 1
     satirno += 1
-
 pencere.mainloop()
 
 # Press the green button in the gutter to run the script.
