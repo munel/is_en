@@ -91,7 +91,7 @@ def cevir(a):
                     bilinen = bilinen + 1
                     hafiza.clear()
                     if bilinen == 18:
-                        messagebox.showinfo("hafıza oyunu",
+                        messagebox.showinfo("Hafıza Oyunu",
                                             "Tebrikler!Tüm eşleştirmeleri başarıyla gerçekleştirdiniz")
                 else:
                     ikinci_buton.after(100, lambda x=i[2]: cevirici(x))
@@ -108,7 +108,7 @@ icerikler = icerikler * 2
 atananlar = []
 satirno = 0
 m = PhotoImage(file="resim/kapat.png",  width=80, height=80)
-messagebox.showinfo("hafıza oyunu",
+messagebox.showinfo("Hafıza Oyunu",
                                             "Kartların üstüne tıklayarak işaret dili harflerinin eşlerini bulabilir misin?")
 for satir in range(0, 6):
     sutunno = 0
