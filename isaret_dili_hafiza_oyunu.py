@@ -9,7 +9,7 @@ from tkinter import messagebox
 
 pencere = Tk()
 hafiza = []
-global bilinen
+bilinen = 0
 resimler=[]
 atananlar = []
 
@@ -17,7 +17,6 @@ atananlar = []
 
 class HafizaOyunu:
     def oyunuBaslat(self):
-        bilinen = 0
         pencere.title("İşaret Dili Alfabesi Hafıza Oyununa Hoşgeldiniz")
         Res_1 = PhotoImage(file="resim/0.png", width=80, height=80)
         Res_2 = PhotoImage(file="resim/1.png", width=80, height=80)
