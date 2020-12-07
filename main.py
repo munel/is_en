@@ -67,7 +67,7 @@ class MyForm(QMainWindow):
 
         self.ui.lineEdit.textChanged.connect(self.aramaMetniDegistir)
         self.ui.listWidget.itemClicked.connect(self.listedeKiElemanSecildi)
-        self.ui.comboBox.currentIndexChanged.connect(self.comboBoxSecim)
+        self.ui.comboBox.activated.connect(self.comboBoxTiklama)
         self.ui.actionKategori_Ekle.triggered.connect(self.yeniKategoriEkle)
         self.ui.actionKategori_Sil.triggered.connect(self.kategoriSil)
         self.ui.actionKategori_Duzenle.triggered.connect(self.kategoriDuzenle)
@@ -360,6 +360,7 @@ class MyForm(QMainWindow):
 
     def kategoriSil(self):
         try:
+
             self.silinecekKategori.kategori, okPressed = QInputDialog.getItem(self, "Kategori Silme İşlemi", "Silinecek Kategoriyi Seçin:",
                                                    self.kategoriListesi, 0, False)
             if okPressed and self.silinecekKategori.kategori:
@@ -380,7 +381,8 @@ class MyForm(QMainWindow):
             print(exp)
 
 
-    def comboBoxSecim(self):
+    def comboBoxTiklama(self):
+        print("tıklandı")
         self.secilenKategori.kategori = self.ui.comboBox.itemText(self.ui.comboBox.currentIndex())
 
         if (self.ui.comboBox.currentIndex() != 0):  # düzeltilmesi gerekiyor  bütün hepsinde çıkması lazım
