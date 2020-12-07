@@ -390,6 +390,9 @@ class MyForm(QMainWindow):
                 self.ui.listWidget.addItems(kelimeListesi)
             except Exception as e:
                 print(e)
+        else:
+            self.listeleriHazirla()
+            self.listeyiHazirla()
 
     def comboListeHazirla(self):
         self.ui.comboBox.clear()
