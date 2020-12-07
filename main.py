@@ -5,7 +5,7 @@ from kelimeislemleri import YeniKelimeEkle
 from silinecekkelimeform import SilinecekKelimeForm
 from duzenlenecekkelimeform import DuzenlenecekKelimeForm
 from Sinav_coktan_secme import *
-from isaret_dili_hafiza_oyunu import HafizaOyunu
+from isaret_dili_hafiza_oyunu import *
 from kisacevapmain import KisaCevapFrom
 
 from form import *
