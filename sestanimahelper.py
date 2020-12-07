@@ -22,3 +22,5 @@ def sesTanimaFunc():
 
     return algilanan
 print(sesTanimaFunc())
+
+

@@ -60,13 +60,7 @@ class MyForm(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        self.ui.lineEdit.textChanged.connect(self.aramaMetniDegistir)
-        self.ui.listWidget.itemClicked.connect(self.listedeKiElemanSecildi)
-        self.ui.comboBox.currentIndexChanged.connect(self.comboBoxSecim)
-        self.ui.actionKategori_Ekle.triggered.connect(self.yeniKategoriEkle)
-        self.ui.actionKategori_Sil.triggered.connect(self.kategoriSil)
-        self.ui.actionKategori_D_zenle.triggered.connect(self.kategoriDuzenle)
-        self.ui.actionRastgele_S_nav_Yap.triggered.connect(self.rastgeleSinav)
+
 
         self.listeyiHazirla()
         self.comboListeHazirla()
@@ -180,13 +174,9 @@ class MyForm(QMainWindow):
         self.ui.listWidget.addItems(kelimeListesi)
 
     def videoyuOynat(self, video):
-        #self.mediaPlayer.setMedia(
-         #   QMediaContent(QUrl.fromLocalFile(video)))
+
         self.progress.hide()
         self.videoWidget.show()
-        #name = video.replace('\\', '/')
-        #filename = os.path.abspath(name)
-        #print(filename)
         self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(video)))
         self.mediaPlayer.play()
 
@@ -199,18 +189,8 @@ class MyForm(QMainWindow):
         print(sonuc)
         self.videoyuOynat(sonuc)
 
-    def rastgeleSinav(self):
-        pass
 
-    def aramaMetniDegistir(self):
-        self.ui.listWidget.clear()
-        seciliListe.clear()
-        aramaMetni = self.ui.lineEdit.text()
-        for v in kelimeListesi:
-            if v.startswith(aramaMetni.upper()):
-                seciliListe.append(v)
 
-        self.ui.listWidget.addItems(seciliListe)
 
     def recognize_speech_from_mic(self, recognizer, microphone):
         if not isinstance(recognizer, sr.Recognizer):
@@ -265,15 +245,20 @@ class MyForm(QMainWindow):
             self.uyariLbl.show()
 
         else:
-            conn = sqlite3.connect('../../is_en-master-OOP/Sozluk.db')
-            cur = conn.cursor()
-            cur.execute("SELECT KELIME_YOLU FROM KELIMELER WHERE KELIME_ADI=?", [guess["transcription"].upper()])
-            data = cur.fetchone()
-            if data is None:
-                self.uyariLbl.setText("Aradığınız kelime sözlükte yer almamaktadır.")
-                self.uyariLbl.show()
-            else:
+            print(guess["transcription"])
+            try:
+                conn = sqlite3.connect('Sozluk.db')
+                cur = conn.cursor()
+                cur.execute("SELECT KELIME_YOLU FROM KELIMELER WHERE KELIME_ADI=?", [guess["transcription"].upper()])
+                data = cur.fetchone()
+                print(data)
                 self.videoyuOynat(data[0])
+            except Exception as e:
+                print(e)
+                self.progress.hide()
+                self.videoWidget.show()
+                # self.uyariLbl.setText("Aradığınız kelime sözlükte yer almamaktadır.")
+                # self.uyariLbl.show()
 
         self.buton.setIcon(QIcon('micro.png'))
         self.buton.setEnabled(True)
