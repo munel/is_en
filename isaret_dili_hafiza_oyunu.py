@@ -9,6 +9,7 @@ from tkinter import messagebox
 
 pencere = Tk()
 hafiza = []
+global bilinen
 bilinen = 0
 resimler=[]
 atananlar = []
@@ -17,6 +18,7 @@ atananlar = []
 
 class HafizaOyunu:
     def oyunuBaslat(self):
+        self.oncekiBasilan=-1
         pencere.title("İşaret Dili Alfabesi Hafıza Oyununa Hoşgeldiniz")
         Res_1 = PhotoImage(file="resim/0.png", width=80, height=80)
         Res_2 = PhotoImage(file="resim/1.png", width=80, height=80)
@@ -85,29 +87,34 @@ class HafizaOyunu:
             pencere.geometry('%dx%d+%d+%d' % (w, h, x, y))
             
         def cevir(a):
-            if len(hafiza) == 0:
-                for i in atananlar:
-                    if a == i[0]:
-                        ilk_buton = i[2]
-                        ##y = PhotoImage(file=str(i[1]) + ".png", width=50, height=50)
-                        ilk_buton.config(text=i[1], image=resimler[int(i[1])], state="normal")
-                        hafiza.append(i)
-                        print(hafiza)
+            if (a==self.oncekiBasilan):
+                messagebox.showinfo("Hafıza Oyunu","Aynı düğmeye bastınız!")
             else:
-                for i in atananlar:
-                    if a == i[0]:
-                        ikinci_buton = i[2]
-                        ##k = PhotoImage(file=str(i[1]) + ".png",width=50, height=50)
-                        ikinci_buton.config(text=i[1], image=resimler[int(i[1])], state="normal")
-                        if i[1] == hafiza[0][1]:
-                            global bilinen
-                            bilinen = bilinen + 1
-                            hafiza.clear()
-                            if bilinen == 18:
-                                messagebox.showinfo("hafıza oyunu",
+                self.oncekiBasilan=a
+                if len(hafiza) == 0:
+                    for i in atananlar:
+                        if a == i[0]:
+                            ilk_buton = i[2]
+                            ##y = PhotoImage(file=str(i[1]) + ".png", width=50, height=50)
+                            ilk_buton.config(text=i[1], image=resimler[int(i[1])], state="normal")
+                            hafiza.append(i)
+                            print(hafiza)
+                else:
+                    for i in atananlar:
+                        if a == i[0]:
+                            ikinci_buton = i[2]
+                            ##k = PhotoImage(file=str(i[1]) + ".png",width=50, height=50)
+                            ikinci_buton.config(text=i[1], image=resimler[int(i[1])], state="normal")
+                            if i[1] == hafiza[0][1]:
+                                global bilinen
+                                bilinen = bilinen + 1
+                                hafiza.clear()
+                                if bilinen == 18:
+                                    messagebox.showinfo("hafıza oyunu",
                                                     "Tebrikler!Tüm eşleştirmeleri başarıyla gerçekleştirdiniz")
-                        else:
-                            ikinci_buton.after(100, lambda x=i[2]: cevirici(x))
+                            else:
+                                self.oncekiBasilan=-1
+                                ikinci_buton.after(100, lambda x=i[2]: cevirici(x))
 
         def cevirici(ikinci_buton):
             birinci_buton = hafiza[0][2]
