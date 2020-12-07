@@ -54,10 +54,13 @@ class KisaCevapFrom(QDialog):
         self.referansSayi = value
         print(self.referansSayi)
 
-    def sonraki(self):
+    def sonraki(self):        
+        if self.ui.lineEdit_2.text()=="":
+            d = self.kelimeListesi[self.referansSayi]
+            self.ui.listWidget.addItem("      / {} ".format(d))
         self.sayiUret()
         self.videoyuOynat()
-
+        
     def tahmin(self):
         yazi = buyukHarfeCevir(self.ui.lineEdit_2.text())
         print(yazi)
