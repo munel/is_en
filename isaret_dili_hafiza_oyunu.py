@@ -88,7 +88,7 @@ class HafizaOyunu:
             
         def cevir(a):
             if (a==self.oncekiBasilan):
-                messagebox.showinfo("Hafıza Oyunu","Aynı düğmeye bastınız!")
+                print("aynı buton")
             else:
                 self.oncekiBasilan=a
                 if len(hafiza) == 0:
