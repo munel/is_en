@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>696</width>
-    <height>363</height>
+    <width>693</width>
+    <height>361</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,7 +16,7 @@
   <widget class="QFrame" name="frm_sonuc">
    <property name="geometry">
     <rect>
-     <x>0</x>
+     <x>2</x>
      <y>0</y>
      <width>691</width>
      <height>361</height>
@@ -32,9 +32,9 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>60</y>
+      <y>90</y>
       <width>691</width>
-      <height>291</height>
+      <height>261</height>
      </rect>
     </property>
     <property name="font">
@@ -151,11 +151,39 @@
      <string>Toplam Doğru Cevap:</string>
     </property>
    </widget>
+   <widget class="QLabel" name="lblSoru_3">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>60</y>
+      <width>311</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+      <stylestrategy>PreferAntialias</stylestrategy>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <property name="text">
+     <string>Yanlış Cevaplanmış Sorular</string>
+    </property>
+   </widget>
    <zorder>lbl_tpl_dgr</zorder>
    <zorder>listWidget</zorder>
    <zorder>lblSoru_2</zorder>
    <zorder>lbl_Tpl_Soru</zorder>
    <zorder>lblSoru_5</zorder>
+   <zorder>lblSoru_3</zorder>
   </widget>
   <widget class="QFrame" name="frm_Giris">
    <property name="geometry">
@@ -214,9 +242,9 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>20</y>
+      <y>10</y>
       <width>391</width>
-      <height>16</height>
+      <height>40</height>
      </rect>
     </property>
     <property name="font">
