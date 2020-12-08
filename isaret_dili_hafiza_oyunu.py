@@ -7,14 +7,12 @@ from random import random
 import time
 from tkinter import messagebox
 
-
-
-
 class HafizaOyunu:
     def oyunuBaslat(self):
         pencere = Tk()
         hafiza = []
         self.bilinen = 0
+        self.bilinenDugmeler=[]
         resimler = []
         atananlar = []
         self.oncekiBasilan = -1
@@ -77,14 +75,11 @@ class HafizaOyunu:
         resimler.append(Res_27)
         resimler.append(Res_28)
 
-
-
         def cevir(a):
 
-            if (a == self.oncekiBasilan):
+            if (len(hafiza) == 1 and a == self.oncekiBasilan)  or (a in self.bilinenDugmeler):
                 print("aynı buton")
             else:
-                self.oncekiBasilan = a
                 if len(hafiza) == 0:
                     for i in atananlar:
                         if a == i[0]:
@@ -98,14 +93,14 @@ class HafizaOyunu:
                     for i in atananlar:
                         if a == i[0]:
                             ikinci_buton = i[2]
+
                             ##k = PhotoImage(file=str(i[1]) + ".png",width=50, height=50)
                             ikinci_buton.config(text=i[1], image=resimler[int(i[1])], state="normal")
 
                             if i[1] == hafiza[0][1]:
-
                                 self.bilinen = self.bilinen + 1
-                                ikinci_buton['state'] = "disable"
-                                self.ilk_buton['state'] = "disable"
+                                self.bilinenDugmeler.append(self.oncekiBasilan)
+                                self.bilinenDugmeler.append(a)
                                 hafiza.clear()
                                 if self.bilinen == 18:
                                     messagebox.showinfo("hafıza oyunu",
@@ -113,11 +108,13 @@ class HafizaOyunu:
                             else:
                                 self.oncekiBasilan = -1
                                 ikinci_buton.after(100, lambda x=i[2]: cevirici(x))
+                self.oncekiBasilan = a
 
         def cevirici(ikinci_buton):
+
             birinci_buton = hafiza[0][2]
-            birinci_buton.config(text="eşimi bul", image=m, state="active")
-            ikinci_buton.config(text="eşimi bul", image=m, state="active")
+            birinci_buton.config(text="eşimi bul", image=m, state="normal")
+            ikinci_buton.config(text="eşimi bul", image=m, state="normal")
             time.sleep(0.5)
             hafiza.clear()
 
