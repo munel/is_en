@@ -190,11 +190,9 @@ class MyForm(QMainWindow):
             # self.uyariLbl.show()
         elif self.guess["error"]:
             print(self.guess["error"])
-
             # self.uyariLbl.show()
-
         else:
-            print(self.guess["transcription"])
+
             try:
                 conn = sqlite3.connect('Sozluk.db')
                 cur = conn.cursor()
@@ -204,13 +202,10 @@ class MyForm(QMainWindow):
 
                 self.videoyuOynat(data[0])
                 self.ui.listWidget.clear()
-                self.seciliListe.clear()
-                for v in self.kelimeListesi:
-                    if v.startswith(Helper.KucukHarfleriBuyukYap(self.guess["transcription"])):
-                        self.seciliListe.append(v)
-                self.ui.listWidget.addItems(self.seciliListe)
+                self.ui.lineEdit.setText(self.guess["transcription"])
             except Exception as e:
-                print(e)
+                print("Sözcük bulunamadı")
+
 
         self.buton.setIcon(QIcon('micro.png'))
         self.buton.setEnabled(True)
