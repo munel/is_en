@@ -14,7 +14,7 @@ class HafizaOyunu:
     def oyunuBaslat(self):
         pencere = Tk()
         hafiza = []
-        bilinen = 0
+        self.bilinen = 0
         resimler = []
         atananlar = []
         self.oncekiBasilan = -1
@@ -99,10 +99,10 @@ class HafizaOyunu:
                             ##k = PhotoImage(file=str(i[1]) + ".png",width=50, height=50)
                             ikinci_buton.config(text=i[1], image=resimler[int(i[1])], state="normal")
                             if i[1] == hafiza[0][1]:
-                                global bilinen
-                                bilinen = bilinen + 1
+
+                                self.bilinen = self.bilinen + 1
                                 hafiza.clear()
-                                if bilinen == 18:
+                                if self.bilinen == 18:
                                     messagebox.showinfo("hafıza oyunu",
                                                         "Tebrikler!Tüm eşleştirmeleri başarıyla gerçekleştirdiniz")
                             else:

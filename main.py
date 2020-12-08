@@ -95,8 +95,8 @@ class MyForm(QMainWindow):
 
         self.buton = KayitButonu(self)
         self.buton.setIcon(QIcon('micro.png'))
-        self.buton.setIconSize(QSize(60, 60))
-        self.buton.setGeometry(0, 0, 60, 60)
+        self.buton.setIconSize(QSize(30, 30))
+        self.buton.setGeometry(0, 0, 30, 30)
         self.buton.setStyleSheet('border-radius:60')
         self.buton.setFixedSize(self.buton.size())
         self.buton.setEnabled(True)
@@ -119,7 +119,7 @@ class MyForm(QMainWindow):
         hBox2.addWidget(self.progress)
         hBox2.setAlignment(Qt.AlignHCenter)
         hBox3 = QHBoxLayout()
-        hBox3.setContentsMargins(0, 0, 0, 0)
+        hBox3.setContentsMargins(0, 2, 0, 2)
 
         hBox3.setAlignment(Qt.AlignHCenter)
 
@@ -186,10 +186,10 @@ class MyForm(QMainWindow):
 
         self.guess = self.recognize_speech_from_mic(recognizer, microphone)
         if not self.guess["transcription"] or not self.guess["success"]:
-            QMessageBox.information(self, "HATA", "Anlaşılmadı.")
+            print("anlaşılamadı")
             # self.uyariLbl.show()
         elif self.guess["error"]:
-            QMessageBox.information(self, "HATA", "ERROR: {}".format(self.guess["error"]))
+            print(self.guess["error"])
 
             # self.uyariLbl.show()
 
