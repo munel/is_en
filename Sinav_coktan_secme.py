@@ -161,7 +161,7 @@ class Sinav_coktan_secme(QMainWindow):
         rbtn = self.sender()
         if rbtn.isChecked()==True:
            Soru_Cevap_listesi[current_soru-1][1] =rbtn.text()
-           print(Soru_Cevap_listesi)
+         ##  print(Soru_Cevap_listesi)
 
 
     def listeyiHazirla(self):
