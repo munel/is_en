@@ -80,6 +80,7 @@ class HafizaOyunu:
 
 
         def cevir(a):
+
             if (a == self.oncekiBasilan):
                 print("aynı buton")
             else:
@@ -87,9 +88,10 @@ class HafizaOyunu:
                 if len(hafiza) == 0:
                     for i in atananlar:
                         if a == i[0]:
-                            ilk_buton = i[2]
+                            self.ilk_buton = i[2]
                             ##y = PhotoImage(file=str(i[1]) + ".png", width=50, height=50)
-                            ilk_buton.config(text=i[1], image=resimler[int(i[1])], state="normal")
+                            self.ilk_buton.config(text=i[1], image=resimler[int(i[1])], state="normal")
+
                             hafiza.append(i)
                             print(hafiza)
                 else:
@@ -98,9 +100,12 @@ class HafizaOyunu:
                             ikinci_buton = i[2]
                             ##k = PhotoImage(file=str(i[1]) + ".png",width=50, height=50)
                             ikinci_buton.config(text=i[1], image=resimler[int(i[1])], state="normal")
+
                             if i[1] == hafiza[0][1]:
 
                                 self.bilinen = self.bilinen + 1
+                                ikinci_buton['state'] = "disable"
+                                self.ilk_buton['state'] = "disable"
                                 hafiza.clear()
                                 if self.bilinen == 18:
                                     messagebox.showinfo("hafıza oyunu",
