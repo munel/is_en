@@ -24,6 +24,7 @@ from PyQt5.QtGui import QIcon
 import sqlite3
 import speech_recognition as sr
 import threading
+import seslearamavb
 
 
 class KayitButonu(QtWidgets.QPushButton):
@@ -192,19 +193,13 @@ class MyForm(QMainWindow):
             print(self.guess["error"])
             # self.uyariLbl.show()
         else:
-
             try:
-                conn = sqlite3.connect('Sozluk.db')
-                cur = conn.cursor()
-                cur.execute("SELECT KELIME_YOLU FROM KELIMELER WHERE KELIME_ADI=?",
-                            [Helper.KucukHarfleriBuyukYap(self.guess["transcription"])])
-                data = cur.fetchone()
-
-                self.videoyuOynat(data[0])
+                yol = seslearamavb.yolDondur(self.guess["transcription"])
+                self.videoyuOynat(yol)
                 self.ui.listWidget.clear()
                 self.ui.lineEdit.setText(self.guess["transcription"])
             except Exception as e:
-                print("Sözcük bulunamadı")
+                self.ui.lineEdit.setText("Sözcük Bulunamadı")
 
 
         self.buton.setIcon(QIcon('micro.png'))
