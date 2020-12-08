@@ -1,6 +1,6 @@
 import sys
 from datetime import time
-from PyQt5.QtWidgets import  QMessageBox,QVBoxLayout, QProgressBar
+from PyQt5.QtWidgets import QMessageBox, QVBoxLayout, QProgressBar
 from kelimeislemleri import YeniKelimeEkle
 from silinecekkelimeform import SilinecekKelimeForm
 from duzenlenecekkelimeform import DuzenlenecekKelimeForm
@@ -29,14 +29,6 @@ import os
 import speech_recognition as sr
 import threading
 
-if __name__ == '__main__':
-    w = 515
-    h = 515
-    ws = pencere.winfo_screenwidth()
-    hs = pencere.winfo_screenheight()
-    x = (ws / 2) - (w / 2)
-    y = (hs / 2) - (h / 2)
-    pencere.geometry('%dx%d+%d+%d' % (w, h, x, y))
 
 class KayitButonu(QtWidgets.QPushButton):
     def __init__(self, parent=None):
@@ -54,11 +46,13 @@ class KayitButonu(QtWidgets.QPushButton):
         )
         self.setEnabled(False)
 
+
 TIME_LIMIT = 0
 
 
 class External(QThread):
     countChanged = pyqtSignal(int)
+
     def run(self):
         count = 5
         while count > TIME_LIMIT:
@@ -87,11 +81,11 @@ class MyForm(QMainWindow):
         self.ui.actionKelime_Sil.triggered.connect(self.kelimeSil)
         self.ui.actionKelime_Duzenle.triggered.connect(self.kelimeDuzenle)
 
-        self.secilenKelime=Kelime()
+        self.secilenKelime = Kelime()
         self.secilenKategori = Kategori()
-        self.yeniKategori=Kategori()
+        self.yeniKategori = Kategori()
 
-        self.silinecekKategori=Kategori()
+        self.silinecekKategori = Kategori()
         self.kelimeListesi = []
         self.kategoriListesi = []
         self.seciliListe = []
@@ -103,7 +97,6 @@ class MyForm(QMainWindow):
         self.mediaPlayer = QMediaPlayer(None, QMediaPlayer.VideoSurface)
         self.videoWidget = QVideoWidget()
 
-
         self.buton = KayitButonu(self)
         self.buton.setIcon(QIcon('micro.png'))
         self.buton.setIconSize(QSize(60, 60))
@@ -112,9 +105,6 @@ class MyForm(QMainWindow):
         self.buton.setFixedSize(self.buton.size())
         self.buton.setEnabled(True)
         self.buton.clicked.connect(self.butonTiklandi)
-
-
-
 
         self.progress = QProgressBar(self, minimum=0, maximum=0, objectName="RedProgressBar")
         self.progress.setGeometry(0, 0, 300, 25)
@@ -150,11 +140,10 @@ class MyForm(QMainWindow):
         self.mediaPlayer.play()
         self.videoWidget.hide()
 
-
         self.progress.hide()
         self.videoWidget.show()
-        self.show()
 
+        self.show()
 
     def recognize_speech_from_mic(self, recognizer, microphone):
         if not isinstance(recognizer, sr.Recognizer):
@@ -192,7 +181,6 @@ class MyForm(QMainWindow):
                 # self.uyariLbl.show()
         return response
 
-
     def sesleAra(self):
 
         # self.uyariLbl.hide()
@@ -214,7 +202,8 @@ class MyForm(QMainWindow):
             try:
                 conn = sqlite3.connect('Sozluk.db')
                 cur = conn.cursor()
-                cur.execute("SELECT KELIME_YOLU FROM KELIMELER WHERE KELIME_ADI=?", [Helper.KucukHarfleriBuyukYap(self.guess["transcription"])])
+                cur.execute("SELECT KELIME_YOLU FROM KELIMELER WHERE KELIME_ADI=?",
+                            [Helper.KucukHarfleriBuyukYap(self.guess["transcription"])])
                 data = cur.fetchone()
 
                 self.videoyuOynat(data[0])
@@ -227,13 +216,11 @@ class MyForm(QMainWindow):
             except Exception as e:
                 print(e)
 
-
         self.buton.setIcon(QIcon('micro.png'))
         self.buton.setEnabled(True)
 
     def onCountChanged(self, value):
         self.progress.setValue(value)
-
 
     def onButtonClick(self):
         self.calc = External()
@@ -249,14 +236,13 @@ class MyForm(QMainWindow):
     def listeleriHazirla(self):
         try:
 
-            kelimeListesiTupple  = KelimeBLL.KelimeleriListele()
+            kelimeListesiTupple = KelimeBLL.KelimeleriListele()
             kategoriListesiTupple = KategoriBLL.KategorileriListele()
             self.kelimeListesi = [item[0] for item in kelimeListesiTupple]
             self.kategoriListesi = [item[0] for item in kategoriListesiTupple]
             self.kategoriListesi.insert(0, "Kategori Seçin")
         except Exception as exp:
             print(exp)
-
 
     def yeniKelimeEkle(self):
         try:
@@ -287,8 +273,6 @@ class MyForm(QMainWindow):
             self.listeleriHazirla()
             self.listeyiHazirla()
 
-
-
     def kelimeDuzenle(self):
 
         print("Kelime Düzenle menü basıldı")
@@ -308,16 +292,14 @@ class MyForm(QMainWindow):
             self.listeleriHazirla()
             self.listeyiHazirla()
 
-
-
-
     def kategoriDuzenle(self):
-        item, okPressed = QInputDialog.getItem(self, "Kategori Düzenleme", "Düzenlenecek Kategori:", self.kategoriListesi, 0,
+        item, okPressed = QInputDialog.getItem(self, "Kategori Düzenleme", "Düzenlenecek Kategori:",
+                                               self.kategoriListesi, 0,
                                                False)
-        eskiKategori=Kategori()
-        eskiKategori.kategori=item
+        eskiKategori = Kategori()
+        eskiKategori.kategori = item
         pass
-        if okPressed :
+        if okPressed:
             if item != "Kategori Seçin":
                 duzenlenmis, ok = QInputDialog.getText(self, "Kategori Düzenle", f"Düzenlenen Kategori:  {item}",
                                                        QLineEdit.Normal, "")
@@ -327,15 +309,15 @@ class MyForm(QMainWindow):
                 if ok and yeniKategori.kategori:
                     print(eskiKategori.kategori)
                     print(yeniKategori.kategori)
-                    guncellendiMi = KategoriBLL.KategoriDuzenle(eskiKategori,yeniKategori)
+                    guncellendiMi = KategoriBLL.KategoriDuzenle(eskiKategori, yeniKategori)
 
-                    if guncellendiMi :
+                    if guncellendiMi:
                         QMessageBox.information(self, "Düzenleme", "Kategori Düzenlendi")
                         self.listeleriHazirla()
                         self.comboListeHazirla()
                         self.listeyiHazirla()
 
-                    else :
+                    else:
                         QMessageBox.warning(self, "Düzenleme", "Kategori Düzenlenmedi")
                 else:
                     QMessageBox.information(self, "Düzenleme", "Vazgeçildi.")
@@ -346,21 +328,22 @@ class MyForm(QMainWindow):
 
     def yeniKategoriEkle(self):
         try:
-            yazilanYeniKategori, okPressed = QInputDialog.getText(self, "Kategori Ekleme", "Yeni Kategori:", QLineEdit.Normal, "")
-            self.yeniKategori.kategori=Helper.KucukHarfleriBuyukYap(yazilanYeniKategori)
+            yazilanYeniKategori, okPressed = QInputDialog.getText(self, "Kategori Ekleme", "Yeni Kategori:",
+                                                                  QLineEdit.Normal, "")
+            self.yeniKategori.kategori = Helper.KucukHarfleriBuyukYap(yazilanYeniKategori)
             if okPressed and self.yeniKategori.kategori != '':
                 # kategoriler tablosuna yeni kategori eklenecek
 
-                    eklendiMi= KategoriBLL.KategoriEkle(self.yeniKategori)
+                eklendiMi = KategoriBLL.KategoriEkle(self.yeniKategori)
 
-                    if (eklendiMi):
-                        QMessageBox.information(self, "Kategori Ekleme", "Yeni Kategori Eklendi")
+                if (eklendiMi):
+                    QMessageBox.information(self, "Kategori Ekleme", "Yeni Kategori Eklendi")
 
-                        self.listeleriHazirla()
-                        self.comboListeHazirla()
-                        self.listeyiHazirla()
-                    else:
-                        raise Exception("Sql kayıt eklenemedi.")
+                    self.listeleriHazirla()
+                    self.comboListeHazirla()
+                    self.listeyiHazirla()
+                else:
+                    raise Exception("Sql kayıt eklenemedi.")
 
         except Exception as e:
             print(e)
@@ -369,8 +352,9 @@ class MyForm(QMainWindow):
     def kategoriSil(self):
         try:
 
-            self.silinecekKategori.kategori, okPressed = QInputDialog.getItem(self, "Kategori Silme İşlemi", "Silinecek Kategoriyi Seçin:",
-                                                   self.kategoriListesi, 0, False)
+            self.silinecekKategori.kategori, okPressed = QInputDialog.getItem(self, "Kategori Silme İşlemi",
+                                                                              "Silinecek Kategoriyi Seçin:",
+                                                                              self.kategoriListesi, 0, False)
             if okPressed and self.silinecekKategori.kategori:
                 if self.silinecekKategori.kategori != "Kategori Seçin":
 
@@ -383,11 +367,10 @@ class MyForm(QMainWindow):
                     self.ui.listWidget.clear()
                     self.ui.listWidget.addItems(self.kelimeListesi)
                     QMessageBox.information(self, "Kategroi Silme", "Kategori Silindi")
-                else :
+                else:
                     QMessageBox.warning(self, "Kategroi Silme", "Bu seçenek silinemez.")
         except Exception as exp:
             print(exp)
-
 
     def comboBoxTiklama(self):
         print("tıklandı")
@@ -443,15 +426,21 @@ class MyForm(QMainWindow):
         self.ui.listWidget.addItems(self.seciliListe)
 
     def hafizaOyunuAc(self):
+        w = 515
+        h = 515
+        ws = pencere.winfo_screenwidth()
+        hs = pencere.winfo_screenheight()
+        x = (ws / 2) - (w / 2)
+        y = (hs / 2) - (h / 2)
+        pencere.geometry('%dx%d+%d+%d' % (w, h, x, y))
         h = HafizaOyunu()
         h.oyunuBaslat()
+
     def kisacevapOyunuAc(self):
         KisaCevapFrom()
 
-  
 
 if __name__ == "__main__":
- 
     app = QApplication(sys.argv)
     w = MyForm()
     w.show()
