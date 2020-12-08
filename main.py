@@ -28,14 +28,7 @@ import sqlite3
 import os
 import speech_recognition as sr
 import threading
-if __name__ == '__main__':
-    w = 515
-    h = 515
-    ws = pencere.winfo_screenwidth()
-    hs = pencere.winfo_screenheight()
-    x = (ws / 2) - (w / 2)
-    y = (hs / 2) - (h / 2)
-    pencere.geometry('%dx%d+%d+%d' % (w, h, x, y))
+
 
 class KayitButonu(QtWidgets.QPushButton):
     def __init__(self, parent=None):
@@ -447,11 +440,18 @@ class MyForm(QMainWindow):
     def kisacevapOyunuAc(self):
         KisaCevapFrom()
 
-
-
+  
 
 if __name__ == "__main__":
+ 
     app = QApplication(sys.argv)
     w = MyForm()
     w.show()
+    w = 515
+    h = 515
+    ws = pencere.winfo_screenwidth()
+    hs = pencere.winfo_screenheight()
+    x = (ws / 2) - (w / 2)
+    y = (hs / 2) - (h / 2)
+    pencere.geometry('%dx%d+%d+%d' % (w, h, x, y))
     sys.exit(app.exec_())
