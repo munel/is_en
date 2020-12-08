@@ -7,18 +7,17 @@ from random import random
 import time
 from tkinter import messagebox
 
-pencere = Tk()
-hafiza = []
-global bilinen
-bilinen = 0
-resimler=[]
-atananlar = []
 
 
 
 class HafizaOyunu:
     def oyunuBaslat(self):
-        self.oncekiBasilan=-1
+        pencere = Tk()
+        hafiza = []
+        bilinen = 0
+        resimler = []
+        atananlar = []
+        self.oncekiBasilan = -1
         pencere.title("İşaret Dili Alfabesi Hafıza Oyununa Hoşgeldiniz")
         Res_1 = PhotoImage(file="resim/0.png", width=80, height=80)
         Res_2 = PhotoImage(file="resim/1.png", width=80, height=80)
@@ -77,20 +76,14 @@ class HafizaOyunu:
         resimler.append(Res_26)
         resimler.append(Res_27)
         resimler.append(Res_28)
-        if __name__ == '__main__':
-            w = 515
-            h = 515
-            ws = pencere.winfo_screenwidth()
-            hs = pencere.winfo_screenheight()
-            x = (ws/2) - (w/2)
-            y = (hs/2) - (h/2)
-            pencere.geometry('%dx%d+%d+%d' % (w, h, x, y))
-            
+
+
+
         def cevir(a):
-            if (a==self.oncekiBasilan):
+            if (a == self.oncekiBasilan):
                 print("aynı buton")
             else:
-                self.oncekiBasilan=a
+                self.oncekiBasilan = a
                 if len(hafiza) == 0:
                     for i in atananlar:
                         if a == i[0]:
@@ -111,9 +104,9 @@ class HafizaOyunu:
                                 hafiza.clear()
                                 if bilinen == 18:
                                     messagebox.showinfo("hafıza oyunu",
-                                                    "Tebrikler!Tüm eşleştirmeleri başarıyla gerçekleştirdiniz")
+                                                        "Tebrikler!Tüm eşleştirmeleri başarıyla gerçekleştirdiniz")
                             else:
-                                self.oncekiBasilan=-1
+                                self.oncekiBasilan = -1
                                 ikinci_buton.after(100, lambda x=i[2]: cevirici(x))
 
         def cevirici(ikinci_buton):
@@ -128,8 +121,7 @@ class HafizaOyunu:
 
         satirno = 0
         m = PhotoImage(file="resim/kapat.png", width=80, height=80)
-        messagebox.showinfo("hafıza oyunu",
-                            "Kartların üstüne tıklayarak işaret dili harflerinin eşlerini bulabilir misin?")
+
         for satir in range(0, 6):
             sutunno = 0
             for sutun in range(0, 6):
@@ -145,4 +137,14 @@ class HafizaOyunu:
                 butonx.grid(row=satirno, column=sutunno)
                 sutunno = sutunno + 1
             satirno += 1
+
+        w = 515
+        h = 515
+        ws = pencere.winfo_screenwidth()
+        hs = pencere.winfo_screenheight()
+        x = (ws / 2) - (w / 2)
+        y = (hs / 2) - (h / 2)
+        pencere.geometry('%dx%d+%d+%d' % (w, h, x, y))
+        messagebox.showinfo("hafıza oyunu",
+                            "Kartların üstüne tıklayarak işaret dili harflerinin eşlerini bulabilir misin?")
         pencere.mainloop()

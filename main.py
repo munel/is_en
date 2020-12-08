@@ -9,23 +9,19 @@ from isaret_dili_hafiza_oyunu import *
 from kisacevapmain import KisaCevapFrom
 
 from form import *
-import sqlite3
+
 from kategoriBLL import KategoriBLL
 from kelimeBLL import KelimeBLL
 from entity import Kelime
 from entity import Kategori
 from helper import Helper
-
 import sys
 import time
-
 from PyQt5.QtCore import QUrl, QDir, QSize, Qt, QThread, pyqtSignal
 from PyQt5.QtMultimedia import QMediaContent, QMediaPlayer
 from PyQt5.QtMultimediaWidgets import QVideoWidget
-
 from PyQt5.QtGui import QIcon
 import sqlite3
-import os
 import speech_recognition as sr
 import threading
 
@@ -426,13 +422,6 @@ class MyForm(QMainWindow):
         self.ui.listWidget.addItems(self.seciliListe)
 
     def hafizaOyunuAc(self):
-        w = 515
-        h = 515
-        ws = pencere.winfo_screenwidth()
-        hs = pencere.winfo_screenheight()
-        x = (ws / 2) - (w / 2)
-        y = (hs / 2) - (h / 2)
-        pencere.geometry('%dx%d+%d+%d' % (w, h, x, y))
         h = HafizaOyunu()
         h.oyunuBaslat()
 
