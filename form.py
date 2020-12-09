@@ -27,7 +27,7 @@ class Ui_MainWindow(object):
         self.listWidget.setGeometry(QtCore.QRect(10, 70, 161, 241))
         self.listWidget.setObjectName("listWidget")
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(190, 10, 501, 301))
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(190, 10, 477, 303))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
         self.layout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.layout.setSizeConstraint(QtWidgets.QLayout.SetNoConstraint)
