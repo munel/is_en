@@ -17,8 +17,17 @@ class KategoriBLL:
 
 
     @staticmethod
-    def KategoriEkle(kategori=Kategori()):
-        return KategoriDAL.KategoriEkle(kategori)
+    def KategoriEkleSadece(kategori=Kategori()):
+        eklenenKategoriId=  KategoriDAL.KategoriEkle(kategori)
+        if eklenenKategoriId>0:
+            return True
+        else:
+            return False
+
+    @staticmethod
+    def KategoriEkleKelimeAta(kategori=Kategori(),secilenKelimeler=Kelime()):
+        eklenenKategoriId=KategoriDAL.KategoriEkle(kategori)
+        return KategoriDAL.KelimelerKategoriIdEkle(eklenenKategoriId,secilenKelimeler)
 
     @staticmethod
     def KategoriSil(kategori=Kategori()):

@@ -4,6 +4,10 @@ from PyQt5.QtWidgets import QMessageBox, QVBoxLayout, QProgressBar
 from kelimeislemleri import YeniKelimeEkle
 from silinecekkelimeform import SilinecekKelimeForm
 from duzenlenecekkelimeform import DuzenlenecekKelimeForm
+
+from yeniKategoriEkle import YeniKategoriEkle
+
+
 from Sinav_coktan_secme import *
 from isaret_dili_hafiza_oyunu import *
 from kisacevapmain import KisaCevapFrom
@@ -314,26 +318,26 @@ class MyForm(QMainWindow):
 
     def yeniKategoriEkle(self):
         try:
-            yazilanYeniKategori, okPressed = QInputDialog.getText(self, "Kategori Ekleme", "Yeni Kategori:",
-                                                                  QLineEdit.Normal, "")
-            self.yeniKategori.kategori = Helper.KucukHarfleriBuyukYap(yazilanYeniKategori)
-            if okPressed and self.yeniKategori.kategori != '':
-                # kategoriler tablosuna yeni kategori eklenecek
+            self.yeniKategoriEkle = YeniKategoriEkle()
+            self.yeniKategoriEkle.show()
 
-                eklendiMi = KategoriBLL.KategoriEkle(self.yeniKategori)
+            if self.yeniKategoriEkle.close:
+                print("Yeni Kategori Sayfası kapatıldı.")
 
-                if (eklendiMi):
-                    QMessageBox.information(self, "Kategori Ekleme", "Yeni Kategori Eklendi")
-
-                    self.listeleriHazirla()
-                    self.comboListeHazirla()
-                    self.listeyiHazirla()
-                else:
-                    raise Exception("Sql kayıt eklenemedi.")
 
         except Exception as e:
             print(e)
-            QMessageBox.warning(self, "Kategori Ekleme", "Yeni Kategori Eklenemedi.")
+
+        if self.yeniKategoriEkle.exec_() == 1:
+            self.listeleriHazirla()
+            self.listeyiHazirla()
+            self.comboListeHazirla()
+            #QMessageBox.information(self, "Yeni Kelime", "Yeni Kelime Eklendi")
+
+
+
+
+
 
     def kategoriSil(self):
         try:
