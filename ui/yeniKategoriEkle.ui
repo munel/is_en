@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>555</width>
-    <height>415</height>
+    <width>492</width>
+    <height>556</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,8 +22,8 @@
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>130</y>
+     <x>10</x>
+     <y>50</y>
      <width>251</width>
      <height>91</height>
     </rect>
@@ -45,10 +45,10 @@
   <widget class="QGroupBox" name="groupBox_2">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>50</y>
-     <width>241</width>
-     <height>351</height>
+     <x>10</x>
+     <y>150</y>
+     <width>251</width>
+     <height>391</height>
     </rect>
    </property>
    <property name="title">
@@ -59,8 +59,8 @@
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>199</width>
-      <height>321</height>
+      <width>221</width>
+      <height>351</height>
      </rect>
     </property>
    </widget>
@@ -68,8 +68,8 @@
   <widget class="QCommandLinkButton" name="btnKategoriEkle">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>250</y>
+     <x>280</x>
+     <y>70</y>
      <width>181</width>
      <height>51</height>
     </rect>
@@ -81,7 +81,7 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>280</x>
+     <x>170</x>
      <y>0</y>
      <width>201</width>
      <height>61</height>
@@ -98,6 +98,29 @@
    <property name="text">
     <string>Yeni Kategori Ekle</string>
    </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_3">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>150</y>
+     <width>191</width>
+     <height>391</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Yeni Kategoriye Dahil Olacak Kelimeleri Seçiniz</string>
+   </property>
+   <widget class="QListWidget" name="listSecilenKelimeler">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>161</width>
+      <height>351</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

@@ -20,17 +20,19 @@ class YeniKategoriEkle(QDialog):
         self.yeniKategori =Kategori()
         self.secilenKelimeler= Kelime()
         super(YeniKategoriEkle, self).__init__()
-        self.setFixedSize(550, 425)
+        self.setFixedSize(492, 556)
         self.setupUi(self)
 
     def setupUi(self, DialogYeniKategoriEkle):
         DialogYeniKategoriEkle.setObjectName("DialogYeniKategoriEkle")
         DialogYeniKategoriEkle.setWindowModality(QtCore.Qt.ApplicationModal)
-        DialogYeniKategoriEkle.resize(555, 415)
+        DialogYeniKategoriEkle.resize(492, 556)
         DialogYeniKategoriEkle.setSizeGripEnabled(False)
+
         self.groupBox = QtWidgets.QGroupBox(DialogYeniKategoriEkle)
-        self.groupBox.setGeometry(QtCore.QRect(260, 130, 251, 91))
+        self.groupBox.setGeometry(QtCore.QRect(10, 50, 251, 91))
         self.groupBox.setObjectName("groupBox")
+
         self.txtYeniKategoriAdi = QtWidgets.QLineEdit(self.groupBox)
         self.txtYeniKategoriAdi.setGeometry(QtCore.QRect(10, 30, 221, 41))
         self.txtYeniKategoriAdi.setObjectName("txtYeniKategoriAdi")
@@ -43,17 +45,22 @@ class YeniKategoriEkle(QDialog):
 
 
         self.groupBox_2 = QtWidgets.QGroupBox(DialogYeniKategoriEkle)
-        self.groupBox_2.setGeometry(QtCore.QRect(0, 50, 241, 351))
+        self.groupBox_2.setGeometry(QtCore.QRect(10, 150, 251, 391))
         self.groupBox_2.setObjectName("groupBox_2")
+
         self.listKelimeler = QtWidgets.QListWidget(self.groupBox_2)
-        self.listKelimeler.setGeometry(QtCore.QRect(10, 20, 199, 321))
+        self.listKelimeler.setGeometry(QtCore.QRect(10, 20, 221, 351))
+        self.listKelimeler.setInputMethodHints(QtCore.Qt.ImhMultiLine)
         self.listKelimeler.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
         self.listKelimeler.setObjectName("listKelimeler")
+        self.listKelimeler.setSortingEnabled(True)
+
         self.btnKategoriEkle = QtWidgets.QCommandLinkButton(DialogYeniKategoriEkle)
-        self.btnKategoriEkle.setGeometry(QtCore.QRect(300, 250, 181, 51))
+        self.btnKategoriEkle.setGeometry(QtCore.QRect(280, 70, 181, 51))
         self.btnKategoriEkle.setObjectName("btnKategoriEkle")
+
         self.label = QtWidgets.QLabel(DialogYeniKategoriEkle)
-        self.label.setGeometry(QtCore.QRect(280, 0, 201, 61))
+        self.label.setGeometry(QtCore.QRect(170, 0, 201, 61))
         font = QtGui.QFont()
         font.setFamily("Calibri")
         font.setPointSize(18)
@@ -61,6 +68,14 @@ class YeniKategoriEkle(QDialog):
         font.setWeight(75)
         self.label.setFont(font)
         self.label.setObjectName("label")
+
+        self.groupBox_3 = QtWidgets.QGroupBox(DialogYeniKategoriEkle)
+        self.groupBox_3.setGeometry(QtCore.QRect(280, 150, 191, 391))
+        self.groupBox_3.setObjectName("groupBox_3")
+        self.listSecilenKelimeler = QtWidgets.QListWidget(self.groupBox_3)
+        self.listSecilenKelimeler.setGeometry(QtCore.QRect(10, 20, 161, 351))
+        self.listSecilenKelimeler.setObjectName("listSecilenKelimeler")
+        self.listSecilenKelimeler.setSortingEnabled(True)
 
         self.retranslateUi(DialogYeniKategoriEkle)
         QtCore.QMetaObject.connectSlotsByName(DialogYeniKategoriEkle)
@@ -77,6 +92,7 @@ class YeniKategoriEkle(QDialog):
             _translate("DialogYeniKategoriEkle", "Yeni Kategoriye Dahil Olacak Kelimeleri Seçiniz"))
         self.btnKategoriEkle.setText(_translate("DialogYeniKategoriEkle", "Kategoriyi Ekle"))
         self.label.setText(_translate("DialogYeniKategoriEkle", "Yeni Kategori Ekle"))
+        self.groupBox_3.setTitle(_translate("DialogYeniKategoriEkle", "Seçilen Kelimeler"))
 
 
 
@@ -126,4 +142,6 @@ class YeniKategoriEkle(QDialog):
     def listedenSecilenKelimeleriAl(self):
         sectim = self.listKelimeler.selectedItems()
         self.secilenKelimeler.kelimeler= [s.text() for s in sectim]
+        self.listSecilenKelimeler.clear()
+        self.listSecilenKelimeler.addItems(self.secilenKelimeler.kelimeler)
         print(self.secilenKelimeler.kelimeler)
