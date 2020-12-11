@@ -25,25 +25,32 @@ class SilinecekKelimeForm(QDialog):
         self.kelimeSilWidget = QWidget(self)
         self.kelimeSilWidget.setGeometry(QtCore.QRect(10, 0, 381, 281))
         self.kelimeSilWidget.setObjectName("kelimeSilWidget")
+
         self.silinecekKelimeText = QtWidgets.QLineEdit(self.kelimeSilWidget)
         self.silinecekKelimeText.setGeometry(QtCore.QRect(20, 20, 131, 20))
         self.silinecekKelimeText.setToolTip("")
         self.silinecekKelimeText.setObjectName("silinecekKelimeText")
+
         self.labelyk = QtWidgets.QLabel(self.kelimeSilWidget)
         self.labelyk.setGeometry(QtCore.QRect(20, 220, 131, 41))
         self.labelyk.setAlignment(QtCore.Qt.AlignCenter)
         self.labelyk.setWordWrap(True)
         self.labelyk.setObjectName("labelyk")
+
         self.listWidgetSilenecekKelimeler = QtWidgets.QListWidget(self.kelimeSilWidget)
         self.listWidgetSilenecekKelimeler.setGeometry(QtCore.QRect(20, 50, 131, 171))
         self.listWidgetSilenecekKelimeler.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
+        self.listWidgetSilenecekKelimeler.setSortingEnabled(True)
         self.listWidgetSilenecekKelimeler.setObjectName("listWidgetSilenecekKelimeler")
+
         self.pushButtonKelimeSil = QtWidgets.QPushButton(self.kelimeSilWidget)
         self.pushButtonKelimeSil.setGeometry(QtCore.QRect(160, 230, 201, 41))
         self.pushButtonKelimeSil.setObjectName("pushButtonKelimeSil")
+
         self.verticalLayoutWidget = QtWidgets.QWidget(self.kelimeSilWidget)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(160, 20, 211, 201))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
+
         self.layoutKelimeSil = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.layoutKelimeSil.setContentsMargins(0, 0, 0, 0)
         self.layoutKelimeSil.setObjectName("layoutYeniKelime")

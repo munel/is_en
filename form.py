@@ -17,59 +17,87 @@ class Ui_MainWindow(object):
         MainWindow.resize(722, 366)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
+
         self.comboBox = QtWidgets.QComboBox(self.centralwidget)
         self.comboBox.setGeometry(QtCore.QRect(10, 10, 161, 22))
         self.comboBox.setObjectName("comboBox")
+
         self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit.setGeometry(QtCore.QRect(10, 40, 161, 20))
         self.lineEdit.setObjectName("lineEdit")
+
         self.listWidget = QtWidgets.QListWidget(self.centralwidget)
         self.listWidget.setGeometry(QtCore.QRect(10, 70, 161, 241))
         self.listWidget.setObjectName("listWidget")
+        self.listWidget.setSortingEnabled(True)
+
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(190, 10, 477, 303))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
+
         self.layout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.layout.setSizeConstraint(QtWidgets.QLayout.SetNoConstraint)
         self.layout.setContentsMargins(0, 0, 0, 0)
         self.layout.setSpacing(0)
         self.layout.setObjectName("layout")
+
         MainWindow.setCentralWidget(self.centralwidget)
+
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 722, 21))
         self.menubar.setObjectName("menubar")
+
         self.menuKelimeler = QtWidgets.QMenu(self.menubar)
         self.menuKelimeler.setObjectName("menuKelimeler")
+
         self.menuKategoriler = QtWidgets.QMenu(self.menubar)
         self.menuKategoriler.setObjectName("menuKategoriler")
+
         self.menuHakk_nda = QtWidgets.QMenu(self.menubar)
         self.menuHakk_nda.setObjectName("menuHakk_nda")
+
         MainWindow.setMenuBar(self.menubar)
+
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
+
         MainWindow.setStatusBar(self.statusbar)
+
+
         self.actionKelime_Ekle = QtWidgets.QAction(MainWindow)
         self.actionKelime_Ekle.setObjectName("actionKelime_Ekle")
+
         self.actionKelime_Duzenle = QtWidgets.QAction(MainWindow)
         self.actionKelime_Duzenle.setObjectName("actionKelime_Duzenle")
+
         self.actionKelime_Sil = QtWidgets.QAction(MainWindow)
         self.actionKelime_Sil.setObjectName("actionKelime_Sil")
+
         self.actionKategori_Ekle = QtWidgets.QAction(MainWindow)
         self.actionKategori_Ekle.setObjectName("actionKategori_Ekle")
+
         self.actionKategori_Duzenle = QtWidgets.QAction(MainWindow)
         self.actionKategori_Duzenle.setObjectName("actionKategori_Duzenle")
+
         self.actionKategori_Sil = QtWidgets.QAction(MainWindow)
         self.actionKategori_Sil.setObjectName("actionKategori_Sil")
+
         self.actionRastgele_S_nav_Yap = QtWidgets.QAction(MainWindow)
         self.actionRastgele_S_nav_Yap.setObjectName("actionRastgele_S_nav_Yap")
+
         self.actionHafizaOyunu = QtWidgets.QAction(MainWindow)
         self.actionHafizaOyunu.setObjectName("actionHafizaOyunu")
+
         self.actionYard_m = QtWidgets.QAction(MainWindow)
         self.actionYard_m.setObjectName("actionYard_m")
+
         self.actionCoktanSecmeliSinav = QtWidgets.QAction(MainWindow)
         self.actionCoktanSecmeliSinav.setObjectName("actionCoktanSecmeliSinav")
+
         self.actionKisaCevap = QtWidgets.QAction(MainWindow)
         self.actionKisaCevap.setObjectName("actionKisaCevap")
+
+
         self.menuKelimeler.addAction(self.actionKelime_Ekle)
         self.menuKelimeler.addAction(self.actionKelime_Duzenle)
         self.menuKelimeler.addAction(self.actionKelime_Sil)

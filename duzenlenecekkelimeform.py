@@ -33,44 +33,57 @@ class DuzenlenecekKelimeForm(QDialog):
         self.kelimeDuzenleWidget = QWidget(self)
         self.kelimeDuzenleWidget.setGeometry(QtCore.QRect(10, 10, 751, 331))
         self.kelimeDuzenleWidget.setObjectName("kelimeDuzenleWidget")
+
         self.duzenlenecekKelimeText = QtWidgets.QLineEdit(self.kelimeDuzenleWidget)
         self.duzenlenecekKelimeText.setGeometry(QtCore.QRect(20, 20, 131, 20))
         self.duzenlenecekKelimeText.setToolTip("")
         self.duzenlenecekKelimeText.setObjectName("duzenlenecekKelimeText")
+
         self.labelyk = QtWidgets.QLabel(self.kelimeDuzenleWidget)
         self.labelyk.setGeometry(QtCore.QRect(10, 220, 131, 41))
         self.labelyk.setAlignment(QtCore.Qt.AlignCenter)
         self.labelyk.setWordWrap(True)
         self.labelyk.setObjectName("labelyk")
+
         self.listWidgetDuzenlenecekKelimeler = QtWidgets.QListWidget(self.kelimeDuzenleWidget)
         self.listWidgetDuzenlenecekKelimeler.setGeometry(QtCore.QRect(20, 50, 131, 171))
         self.listWidgetDuzenlenecekKelimeler.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
         self.listWidgetDuzenlenecekKelimeler.setObjectName("listWidgetDuzenlenecekKelimeler")
+        self.listWidgetDuzenlenecekKelimeler.setSortingEnabled(True)
+
         self.pushButtonKelimeDuzenle = QtWidgets.QPushButton(self.kelimeDuzenleWidget)
         self.pushButtonKelimeDuzenle.setGeometry(QtCore.QRect(80, 280, 201, 41))
         self.pushButtonKelimeDuzenle.setObjectName("pushButtonKelimeDuzenle")
+
         self.verticalLayoutWidget = QtWidgets.QWidget(self.kelimeDuzenleWidget)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(350, 50, 381, 271))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
+
         self.layoutKelimeDuzenlne = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.layoutKelimeDuzenlne.setContentsMargins(0, 0, 0, 0)
         self.layoutKelimeDuzenlne.setObjectName("layoutYeniKelime")
+
         self.labelyk_2 = QtWidgets.QLabel(self.kelimeDuzenleWidget)
         self.labelyk_2.setGeometry(QtCore.QRect(170, 220, 161, 41))
         self.labelyk_2.setAlignment(QtCore.Qt.AlignCenter)
         self.labelyk_2.setWordWrap(True)
         self.labelyk_2.setObjectName("labelyk_2")
+
         self.listWidgetYKategoriler = QtWidgets.QListWidget(self.kelimeDuzenleWidget)
         self.listWidgetYKategoriler.setGeometry(QtCore.QRect(170, 50, 161, 171))
         self.listWidgetYKategoriler.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
         self.listWidgetYKategoriler.setObjectName("listWidgetYKelime")
+        self.listWidgetYKategoriler.setSortingEnabled(True)
+
         self.yeniKelimeEkleText = QtWidgets.QLineEdit(self.kelimeDuzenleWidget)
         self.yeniKelimeEkleText.setGeometry(QtCore.QRect(170, 20, 161, 20))
         self.yeniKelimeEkleText.setToolTip("")
         self.yeniKelimeEkleText.setObjectName("yeniKelimeEkleText")
+
         self.pushButtonYeniVideoSec = QtWidgets.QPushButton(self.kelimeDuzenleWidget)
         self.pushButtonYeniVideoSec.setGeometry(QtCore.QRect(350, 0, 151, 41))
         self.pushButtonYeniVideoSec.setObjectName("pushButtonYeniVideoSec")
+
         self.labelyk_3 = QtWidgets.QLabel(self.kelimeDuzenleWidget)
         self.labelyk_3.setGeometry(QtCore.QRect(510, 0, 151, 41))
         self.labelyk_3.setAlignment(QtCore.Qt.AlignCenter)

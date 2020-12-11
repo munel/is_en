@@ -32,32 +32,41 @@ class YeniKelimeEkle(QDialog):
     def uiHazirla(self):
         self.yeniKelimeWidget = QWidget(self)
         self.yeniKelimeWidget.setObjectName("yeniKelimeWidget")
+
         self.yeniKelimeEkleText = QtWidgets.QLineEdit(self.yeniKelimeWidget)
         self.yeniKelimeEkleText.setGeometry(QtCore.QRect(10, 20, 131, 20))
         self.yeniKelimeEkleText.setToolTip("")
         self.yeniKelimeEkleText.setObjectName("yeniKelimeEkleText")
+
         self.labelyk = QtWidgets.QLabel(self.yeniKelimeWidget)
         self.labelyk.setGeometry(QtCore.QRect(10, 56, 131, 41))
         self.labelyk.setAlignment(QtCore.Qt.AlignCenter)
         self.labelyk.setWordWrap(True)
         self.labelyk.setObjectName("labelyk")
+
         self.listWidgetYKelime = QtWidgets.QListWidget(self.yeniKelimeWidget)
         self.listWidgetYKelime.setGeometry(QtCore.QRect(10, 100, 131, 171))
         self.listWidgetYKelime.setObjectName("listWidgetYKelime")
         self.listWidgetYKelime.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
+        self.listWidgetYKelime.setSortingEnabled(True)
+
         self.verticalLayoutWidget = QtWidgets.QWidget(self.yeniKelimeWidget)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(159, 99, 211, 141))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
+
         self.layoutYeniKelime = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.layoutYeniKelime.setContentsMargins(0, 0, 0, 0)
         self.layoutYeniKelime.setObjectName("layoutYeniKelime")
+
         self.pushButtonYKKaydet = QtWidgets.QPushButton(self.yeniKelimeWidget)
         self.pushButtonYKKaydet.setGeometry(QtCore.QRect(210, 20, 111, 41))
         self.pushButtonYKKaydet.setObjectName("pushButtonYKKaydet")
+
         self.pushButtonYKVideoEkle = QtWidgets.QPushButton(self.yeniKelimeWidget)
         self.pushButtonYKVideoEkle.setGeometry(QtCore.QRect(200, 250, 131, 23))
         self.pushButtonYKVideoEkle.setObjectName("pushButtonYKVideoEkle")
         self.yeniKelimeEkleText.setPlaceholderText("YeniKelime")
+
         self.labelyk.setText("Kategori Seçin.\n"
                                                   " Birden Fazla Seçim Yapabilirsiniz. ")
         self.pushButtonYKKaydet.setText("Kaydet")
