@@ -34,7 +34,7 @@ class Ui_Dialog(object):
         self.label_Yanlis.setGeometry(QtCore.QRect(110, 312, 47, 13))
         self.label_Yanlis.setObjectName("label_Yanlis")
         self.verticalLayoutWidget = QtWidgets.QWidget(Dialog)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(210, 20, 421, 261))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(210, 40, 421, 237))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.layout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.layout.setContentsMargins(0, 0, 0, 0)

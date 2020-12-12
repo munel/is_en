@@ -122,7 +122,7 @@ class Ui_Form(object):
         self.frm_soru.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frm_soru.setObjectName("frm_soru")
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.frm_soru)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(0, 0, 501, 301))
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(0, 0, 501, 281))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
         self.layout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.layout.setContentsMargins(0, 0, 0, 0)
