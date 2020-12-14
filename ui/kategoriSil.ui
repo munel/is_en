@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>formKategoriSil</class>
+ <widget class="QDialog" name="formKategoriSil">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>521</width>
+    <height>408</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Kategori Sil</string>
+  </property>
+  <widget class="QLabel" name="lblKategoriSil">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>0</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Calibri</family>
+     <pointsize>16</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Kategori Sil</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnKategoriSil">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>50</y>
+     <width>181</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Seçili Kategoriyi Sil</string>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="grboxKategoriler">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>100</y>
+     <width>251</width>
+     <height>301</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Silinecek Ketegoriyi Seçiniz</string>
+   </property>
+   <widget class="QListWidget" name="listKategoriler">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>231</width>
+      <height>271</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="grpboxKelimeler">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>40</y>
+     <width>241</width>
+     <height>361</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Silinecek kategoriyle ilişkisi kaldırılacak kelimeler</string>
+   </property>
+   <widget class="QListWidget" name="listKelimeler">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>221</width>
+      <height>331</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

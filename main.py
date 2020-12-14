@@ -7,7 +7,7 @@ from duzenlenecekkelimeform import DuzenlenecekKelimeForm
 
 from yeniKategoriEkle import YeniKategoriEkle
 from kategoriDuzenle import KategoriDuzenle
-
+from kategoriSil import KategoriSil
 
 from Sinav_coktan_secme import *
 from isaret_dili_hafiza_oyunu import *
@@ -251,8 +251,7 @@ class MyForm(QMainWindow):
         try:
             self.kelimeSil = SilinecekKelimeForm()
             self.kelimeSil.show()
-            if self.kelimeSil.close:
-                print("Kelime Sil Kapatıldı")
+
         except Exception as e:
             print(e)
         if self.kelimeSil.exec_() == 1:
@@ -319,33 +318,22 @@ class MyForm(QMainWindow):
             self.comboListeHazirla()
             #QMessageBox.information(self, "Yeni Kelime", "Yeni Kelime Eklendi")
 
-
-
-
-
-
     def kategoriSil(self):
         try:
+            self.kategoriSil = KategoriSil()
+            self.kategoriSil.show()
 
-            self.silinecekKategori.kategori, okPressed = QInputDialog.getItem(self, "Kategori Silme İşlemi",
-                                                                              "Silinecek Kategoriyi Seçin:",
-                                                                              self.kategoriListesi, 0, False)
-            if okPressed and self.silinecekKategori.kategori:
-                if self.silinecekKategori.kategori != "Kategori Seçin":
+            if self.kategoriSil.exec_() == 1:
+                QMessageBox.information(self, "Kategori Sil", "Kategori ve ilişileri Silindi")
+            else:
+                QMessageBox.warning(self, "Kategori Sil", "Kategori ve/veya ilişkileri silinemedi.")
 
-                    KategoriBLL.KategoriSil(self.silinecekKategori)
+        except Exception as e:
+            print(e)
 
-                    self.listeleriHazirla()
-
-                    self.comboListeHazirla()
-
-                    self.ui.listWidget.clear()
-                    self.ui.listWidget.addItems(self.kelimeListesi)
-                    QMessageBox.information(self, "Kategroi Silme", "Kategori Silindi")
-                else:
-                    QMessageBox.warning(self, "Kategroi Silme", "Bu seçenek silinemez.")
-        except Exception as exp:
-            print(exp)
+        self.listeleriHazirla()
+        self.comboListeHazirla()
+        self.listeyiHazirla()
 
     def comboBoxTiklama(self):
         print("tıklandı")

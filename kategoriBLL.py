@@ -38,8 +38,27 @@ class KategoriBLL:
         return KategoriDAL.KelimelerKategoriIdEkle(eklenenKategoriId,secilenKelimeler)
 
     @staticmethod
-    def KategoriSil(kategori=Kategori()):
-        return KategoriDAL.KategoriSil(kategori)
+    def KategoriSil(silinecekKategori=Kategori()):
+
+        print("KategoriId bulunacak")
+        kategoriId = KategoriDAL.KategoriIdBul(silinecekKategori)
+        print("Kategori Id: ", kategoriId)
+        silinecekKategori.kategoriId = kategoriId
+
+        print("Kategori Silinecek : ")
+        kategoriSilindiMi = KategoriDAL.KategoriSil(silinecekKategori)
+
+
+        kelimeKategoriSilindiMi = KategoriBLL.KategoriIdKelimeSil(silinecekKategori)
+        print(kategoriSilindiMi)
+        print(kelimeKategoriSilindiMi)
+
+        if kategoriSilindiMi and kelimeKategoriSilindiMi:
+            return True
+        else:
+            return False
+
+
 
     @staticmethod
     def KategoriDuzenle(eskiKategori=Kategori(), yeniKategori=Kategori()):
@@ -66,7 +85,7 @@ class KategoriBLL:
 
     @staticmethod
     def KategoriIdKelimeSil(kategori=Kategori()):
-        KategoriDAL.KategoriIdKelimeSil(kategori)
+        return KategoriDAL.KategoriIdKelimeSil(kategori)
 
     @staticmethod
     def KategoriyeAitKelimeler(kategori=Kategori()):

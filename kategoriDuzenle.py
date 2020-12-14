@@ -20,7 +20,6 @@ from kategoriBLL import KategoriBLL
 class KategoriDuzenle(QDialog):
 
     def __init__(self):
-
         self.kategoriListesi=[]
         self.seciliKategoriyeAitKelimelerListesi = []
         self.duzenlenecekKategori =Kategori()
@@ -107,7 +106,7 @@ class KategoriDuzenle(QDialog):
         self.listKategoriler.itemSelectionChanged.connect(self.listedenSecilenKategoriyiAl)
         self.listKelimeler.itemSelectionChanged.connect(self.secilenKelimeleriAl)
         self.chbKelimelerAcilsinMi.toggled.connect(self.KelimelerListesiniAc)
-        self.btnDuzenle.clicked.connect(self.KategoriDuzenle)
+        self.btnDuzenle.clicked.connect(self.KategoriyiDuzenle)
 
 
     def listeleriHazirla(self):
@@ -138,7 +137,7 @@ class KategoriDuzenle(QDialog):
         except Exception as exp:
             print(exp)
 
-    def KategoriDuzenle(self):
+    def KategoriyiDuzenle(self):
         yeniKategori = Kategori()
         yeniKategori.kategori = Helper.KucukHarfleriBuyukYap( self.txtYeniKategoriAdi.text())
         guncellendiMi=False
