@@ -11,10 +11,18 @@ class KategoriBLL:
         return KategoriDAL.KategorileriListele()
 
     @staticmethod
+    def KategoriIdBul(kategori=Kategori()):
+        KategoriDAL.KategoriIdBul(kategori)
+
+    @staticmethod
     def KategoriKelimeIdEkle(eklenenKelimeId,kategori=Kategori()):
         print("Kategori EKleme  başlayacak")
         return KategoriDAL.KategoriKelimeIdEkle(eklenenKelimeId,kategori)
 
+    @staticmethod
+    def KategoriIdKelimeEkle(eklenenKategoriId, kelime=Kelime()):
+        print("KategoriId Kelime EKleme  başlayacak")
+        return KategoriDAL.KategoriIdKelimeEkle(eklenenKategoriId, kelime)
 
     @staticmethod
     def KategoriEkleSadece(kategori=Kategori()):
@@ -50,6 +58,20 @@ class KategoriBLL:
 
         return  KategoriDAL.KelimeyeAitKategoriBul(Kelime)
 
+
+
+    @staticmethod
+    def KategoriKelimeIdSil(kelime=Kelime()):
+        KategoriDAL.KategoriKelimeIdSil(kelime)
+
+    @staticmethod
+    def KategoriIdKelimeSil(kategori=Kategori()):
+        KategoriDAL.KategoriIdKelimeSil(kategori)
+
+    @staticmethod
+    def KategoriyeAitKelimeler(kategori=Kategori()):
+        return KategoriDAL.KategoriyeAitKelimeler(kategori)
+
     @staticmethod
     def KategoriKelimeIdGuncelle(kelime=Kelime(), kategori=Kategori()):
         KategoriBLL.KategoriKelimeIdSil(kelime)
@@ -60,10 +82,22 @@ class KategoriBLL:
         print(kategori.kategoriler)
         return KategoriDAL.KategoriKelimeIdEkle(kelime.kelimeId, kategori)
 
-    @staticmethod
-    def KategoriKelimeIdSil(kelime=Kelime()):
-        KategoriDAL.KategoriKelimeIdSil(kelime)
 
     @staticmethod
-    def KategoriyeAitKelimeler(kategori=Kategori()):
-        return KategoriDAL.KategoriyeAitKelimeler(kategori)
+    def KategoriIdKelimeGuncelle(kelime=Kelime(), eskiKategori=Kategori(),yeniKategori=Kategori()):
+        try:
+            print("Kategori düzenlenecek : ")
+            KategoriBLL.KategoriDuzenle(eskiKategori, yeniKategori)
+            print("KategoriId bulunacak")
+            kategoriId = KategoriDAL.KategoriIdBul(yeniKategori)
+            print("Kategori Id: ", kategoriId)
+            yeniKategori.kategoriId = kategoriId
+
+            silindiMi = KategoriBLL.KategoriIdKelimeSil(yeniKategori)
+            print(silindiMi)
+            KategoriBLL.KategoriIdKelimeEkle(yeniKategori.kategoriId,kelime)
+            return True
+
+        except Exception as exp:
+            print(exp)
+            return False

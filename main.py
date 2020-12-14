@@ -6,6 +6,7 @@ from silinecekkelimeform import SilinecekKelimeForm
 from duzenlenecekkelimeform import DuzenlenecekKelimeForm
 
 from yeniKategoriEkle import YeniKategoriEkle
+from kategoriDuzenle import KategoriDuzenle
 
 
 from Sinav_coktan_secme import *
@@ -136,8 +137,7 @@ class MyForm(QMainWindow):
 
         self.ui.layout.addLayout(vBoxLayout)
         self.mediaPlayer.setVideoOutput(self.videoWidget)
-        self.mediaPlayer.setMedia(
-            QMediaContent(QUrl.fromLocalFile("VIDEOLAR/ARABA.mp4")))
+        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile("VIDEOLAR/ARABA.mp4")))
         self.mediaPlayer.play()
         self.videoWidget.hide()
 
@@ -283,38 +283,24 @@ class MyForm(QMainWindow):
             self.listeyiHazirla()
 
     def kategoriDuzenle(self):
-        item, okPressed = QInputDialog.getItem(self, "Kategori Düzenleme", "Düzenlenecek Kategori:",
-                                               self.kategoriListesi, 0,
-                                               False)
-        eskiKategori = Kategori()
-        eskiKategori.kategori = item
-        pass
-        if okPressed:
-            if item != "Kategori Seçin":
-                duzenlenmis, ok = QInputDialog.getText(self, "Kategori Düzenle", f"Düzenlenen Kategori:  {item}",
-                                                       QLineEdit.Normal, "")
-                yeniKategori = Kategori()
-                yeniKategori.kategori = duzenlenmis
 
-                if ok and yeniKategori.kategori:
-                    print(eskiKategori.kategori)
-                    print(yeniKategori.kategori)
-                    guncellendiMi = KategoriBLL.KategoriDuzenle(eskiKategori, yeniKategori)
+        try:
+            self.kategoriDuzenle = KategoriDuzenle()
+            self.kategoriDuzenle.show()
+            if self.kategoriDuzenle.close:
+                print("Deneme")
+        except Exception as e:
+            print(e)
 
-                    if guncellendiMi:
-                        QMessageBox.information(self, "Düzenleme", "Kategori Düzenlendi")
-                        self.listeleriHazirla()
-                        self.comboListeHazirla()
-                        self.listeyiHazirla()
+        if self.kategoriDuzenle.exec_() == 1:
 
-                    else:
-                        QMessageBox.warning(self, "Düzenleme", "Kategori Düzenlenmedi")
-                else:
-                    QMessageBox.information(self, "Düzenleme", "Vazgeçildi.")
-            else:
-                QMessageBox.warning(self, "Düzenleme", "Kategori seçmediğiniz için iptal edildi.")
+            self.listeleriHazirla()
+            self.comboListeHazirla()
+            self.listeyiHazirla()
+            QMessageBox.information(self, "Kategori Düzenle", "Kategori Düzenlendi.")
         else:
-            QMessageBox.information(self, "Düzenleme", "Vazgeçildi.")
+            QMessageBox.warning(self, "Kategori Düzenle", "Kategori Düzenlenemedi.")
+
 
     def yeniKategoriEkle(self):
         try:
@@ -323,7 +309,6 @@ class MyForm(QMainWindow):
 
             if self.yeniKategoriEkle.close:
                 print("Yeni Kategori Sayfası kapatıldı.")
-
 
         except Exception as e:
             print(e)

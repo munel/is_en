@@ -17,6 +17,14 @@ class KategoriDAL:
             kategoriListesiTupple = cur.fetchall()
             return kategoriListesiTupple
 
+    @staticmethod
+    def KategoriIdBul(kategori=Kategori()):
+        print("KategoriId bul dal çalıştı")
+        with conn:
+            cur = conn.cursor()
+            cur.execute("SELECT ID FROM GRUPLAR where GRUP_ADI=?",[kategori.kategori])
+            bulunacakKategoriId = cur.fetchone()[0]
+            return bulunacakKategoriId
 
     @staticmethod
     def KelimeyeAitKategoriBul(kelime=Kelime()):
@@ -88,11 +96,39 @@ class KategoriDAL:
             print(exp)
             return False
 
+
+
+    @staticmethod
+    def KategoriIdKelimeEkle(eklenenKategoriId, kelime=Kelime()):
+        print("Kategori Id Kelime EKlenecek Dal")
+
+        try:
+            with conn:
+                print("Kategori Eklenmeye başlandı")
+                cur = conn.cursor()
+                print("conn açıldı")
+                print(kelime.kelimeler)
+                for g in kelime.kelimeler:
+                    print(g)
+                    cur.execute("SELECT ID FROM KELIMELER WHERE KELIME_ADI=(?)", [g])
+                    print("fetch yapılacak.")
+                    idH = cur.fetchone()
+                    kelimeId = idH[0]
+                    print("execute yapılacak.")
+                    cur.execute("INSERT INTO GRUP_KELIMELERI (GRUP_ID,KELIME_ID) VALUES(?,?)",
+                                [eklenenKategoriId, kelimeId])
+            print("Bitti")
+            return True
+        except Exception as exp:
+            print(exp)
+            return False
+
     @staticmethod
     def KelimelerKategoriIdEkle(eklenecekKategoriId, kelime=Kelime()):
         print("Kategori EKlenecek")
         yeniKelime = kelime
         try:
+
             with conn:
                 print("Kategori Eklenmeye başlandı")
                 cur = conn.cursor()
@@ -107,6 +143,22 @@ class KategoriDAL:
                     cur.execute("INSERT INTO GRUP_KELIMELERI (GRUP_ID,KELIME_ID) VALUES(?,?)",
                                 [eklenecekKategoriId, kelimeId])
             print("Bitti")
+            return True
+        except Exception as exp:
+            print(exp)
+            return False
+
+    @staticmethod
+    def KategoriIdKelimeSil(silinecekKategori):
+        try:
+
+            with conn:
+                print("Kategoriler kategori Id ye göre silinmeye başlandı")
+                cur = conn.cursor()
+                print("conn açıldı ")
+                cur.execute("delete from GRUP_KELIMELERI WHERE GRUP_ID=(?)", [silinecekKategori.kategoriId])
+                print("fetch yapılacak.")
+                print("Bitti")
             return True
         except Exception as exp:
             print(exp)
@@ -131,15 +183,20 @@ class KategoriDAL:
             print(exp)
             return False
 
+
+
+
     @staticmethod
     def KategoriyeAitKelimeler(kategori=Kategori()):
         sonuc=""
+        print("kategoriye ait kelimeler")
         with conn:
             cur = conn.cursor()
             cur.execute("SELECT KELIME_ADI FROM WR_GRUP_KELIMELERI WHERE GRUP_ADI=(?)", [kategori.kategori])
             sonuc = cur.fetchall()
 
         kelimeListesi = [item[0] for item in sonuc]
+        print(kelimeListesi)
         return kelimeListesi
 
 
