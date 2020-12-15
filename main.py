@@ -137,13 +137,11 @@ class MyForm(QMainWindow):
 
         self.ui.layout.addLayout(vBoxLayout)
         self.mediaPlayer.setVideoOutput(self.videoWidget)
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile("VIDEOLAR/ARABA.mp4")))
-        self.mediaPlayer.play()
-        self.videoWidget.hide()
-
+        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile("VIDEOLAR\MERHABA.mp4")))
         self.progress.hide()
         self.videoWidget.show()
-
+        self.mediaPlayer.play()
+        self.videoWidget.show()
         self.show()
 
     def recognize_speech_from_mic(self, recognizer, microphone):
