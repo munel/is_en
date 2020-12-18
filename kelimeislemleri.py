@@ -33,6 +33,12 @@ class YeniKelimeEkle(QDialog):
         self.yeniKelimeWidget = QWidget(self)
         self.yeniKelimeWidget.setObjectName("yeniKelimeWidget")
 
+        qss = "sablon.qss"
+        with open(qss, "r") as fh:
+            self.setStyleSheet(fh.read())
+
+
+
         self.yeniKelimeEkleText = QtWidgets.QLineEdit(self.yeniKelimeWidget)
         self.yeniKelimeEkleText.setGeometry(QtCore.QRect(10, 20, 131, 20))
         self.yeniKelimeEkleText.setToolTip("")
