@@ -34,7 +34,7 @@ QMenuBar
 	border: none;
 	color: #ff732d;
 	font-weight: bold;
-	font-size: 11px;
+	font-size: 14px;
 
 }
 
@@ -78,7 +78,7 @@ QMenu
     padding: 4px;
     padding-right: 0px;
 	color: #fff;
-	font-size: 11px;
+	font-size: 13px;
 
 }
 
