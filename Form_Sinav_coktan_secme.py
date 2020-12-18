@@ -15,6 +15,9 @@ class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(693, 361)
+        qss = "sablon.qss"
+        with open(qss, "r") as fh:
+            Form.setStyleSheet(fh.read())
         self.frm_sonuc = QtWidgets.QFrame(Form)
         self.frm_sonuc.setGeometry(QtCore.QRect(2, 0, 691, 361))
         self.frm_sonuc.setFrameShape(QtWidgets.QFrame.StyledPanel)
