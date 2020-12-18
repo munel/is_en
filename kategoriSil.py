@@ -26,6 +26,11 @@ class KategoriSil(QDialog):
         self.setupUi(self)
 
     def setupUi(self, formKategoriSil):
+
+        qss = "sablon.qss"
+        with open(qss, "r") as fh:
+            self.setStyleSheet(fh.read())
+
         formKategoriSil.setObjectName("formKategoriSil")
         self.lblKategoriSil = QtWidgets.QLabel(formKategoriSil)
         self.lblKategoriSil.setGeometry(QtCore.QRect(190, 0, 111, 31))
