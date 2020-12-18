@@ -15,6 +15,11 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(662, 348)
+        qss = "sablon.qss"
+        with open(qss, "r") as fh:
+            Dialog.setStyleSheet(fh.read())
+
+
         self.listWidget = QtWidgets.QListWidget(Dialog)
         self.listWidget.setGeometry(QtCore.QRect(20, 40, 171, 241))
         self.listWidget.setObjectName("listWidget")
