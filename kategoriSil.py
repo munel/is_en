@@ -7,6 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets,Qt
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QDialog, QWidget, QFileDialog
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
@@ -23,7 +24,9 @@ class KategoriSil(QDialog):
         self.secilenKelimeler = Kelime()
         super(KategoriSil, self).__init__()
         self.setFixedSize(521, 408)
+        self.setWindowFlags(self.windowFlags() & ~Qt.WindowContextHelpButtonHint)
         self.setupUi(self)
+        
 
     def setupUi(self, formKategoriSil):
 

@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(662, 348)
+
         qss = "sablon.qss"
         with open(qss, "r") as fh:
             Dialog.setStyleSheet(fh.read())
@@ -59,7 +59,7 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        Dialog.setWindowTitle(_translate("Dialog", "Kısa Cevaplı Test Oyunu - İyi Eğlenceler"))
         self.label.setText(_translate("Dialog", "CEVAPLANAN KELİMELER"))
         self.label_2.setText(_translate("Dialog", "Doğru Sayısı :"))
         self.label_3.setText(_translate("Dialog", "Yanlış Sayısı :"))

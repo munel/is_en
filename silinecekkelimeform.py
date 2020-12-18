@@ -4,6 +4,7 @@ from PyQt5.QtCore import QUrl
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtMultimediaWidgets import QVideoWidget
 from PyQt5.QtWidgets import QDialog, QApplication, QFileDialog, QInputDialog, QMainWindow, QLineEdit, QMessageBox,QWidget
+from PyQt5.QtCore import Qt
 from entity import Kelime
 from entity import Video
 from kelimeBLL import KelimeBLL
@@ -18,6 +19,7 @@ class SilinecekKelimeForm(QDialog):
         super(SilinecekKelimeForm, self).__init__()
         self.setWindowTitle("Kelime Silme")
         self.setFixedSize(400, 300)
+        self.setWindowFlags(self.windowFlags() & ~Qt.WindowContextHelpButtonHint)
         self.setupUi()
 
     def setupUi(self):

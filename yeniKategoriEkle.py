@@ -3,7 +3,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QDialog, QWidget, QFileDialog
-
+from PyQt5.QtCore import Qt
 from entity import Kelime
 from entity import Kategori
 from kelimeBLL import KelimeBLL
@@ -21,6 +21,7 @@ class YeniKategoriEkle(QDialog):
         self.secilenKelimeler= Kelime()
         super(YeniKategoriEkle, self).__init__()
         self.setFixedSize(492, 556)
+        self.setWindowFlags(self.windowFlags() & ~Qt.WindowContextHelpButtonHint)
         self.setupUi(self)
 
     def setupUi(self, DialogYeniKategoriEkle):

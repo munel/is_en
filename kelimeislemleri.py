@@ -2,6 +2,7 @@ import random
 
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import QUrl
+from PyQt5.QtCore import Qt
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtMultimediaWidgets import QVideoWidget
 from PyQt5.QtWidgets import QDialog, QWidget, QFileDialog
@@ -26,6 +27,7 @@ class YeniKelimeEkle(QDialog):
         self.yeniKategoriObj = Kategori()
         super(YeniKelimeEkle, self).__init__()
         self.setWindowTitle("Yeni Kelime Ekle")
+        self.setWindowFlags(self.windowFlags() & ~Qt.WindowContextHelpButtonHint)
         self.setFixedSize(400, 300)
         self.uiHazirla()
 

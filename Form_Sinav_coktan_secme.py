@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(693, 361)
+        Form.setFixedSize(700, 365)
         qss = "sablon.qss"
         with open(qss, "r") as fh:
             Form.setStyleSheet(fh.read())
@@ -219,7 +219,7 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
+        Form.setWindowTitle(_translate("Form", "Çoktan Seçmeli Test Oyunu - İyi Eğlenceler"))
         self.lblSoru_2.setText(_translate("Form", "Toplam Soru  :"))
         self.lbl_Tpl_Soru.setText(_translate("Form", "TextLabel"))
         self.lbl_tpl_dgr.setText(_translate("Form", "TextLabel"))

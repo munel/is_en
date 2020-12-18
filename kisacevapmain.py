@@ -6,7 +6,7 @@ from PyQt5.QtMultimediaWidgets import QVideoWidget
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog
 from random import randint
 from kisacevap import *
-
+from PyQt5.QtCore import Qt
 conn = sqlite3.connect('Sozluk.db')
 
 def buyukHarfeCevir(metin):
@@ -21,6 +21,9 @@ class KisaCevapFrom(QDialog):
         super().__init__()
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
+        self.setFixedSize(662, 348)
+        self.setWindowFlags(self.windowFlags() & ~Qt.WindowContextHelpButtonHint)
+
         self.mediaPlayer = QMediaPlayer(None, QMediaPlayer.VideoSurface)
         videoWidget = QVideoWidget(self)
         self.ui.layout.addWidget(videoWidget)

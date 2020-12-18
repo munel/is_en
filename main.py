@@ -25,7 +25,8 @@ import time
 from PyQt5.QtCore import QUrl, QDir, QSize, Qt, QThread, pyqtSignal
 from PyQt5.QtMultimedia import QMediaContent, QMediaPlayer
 from PyQt5.QtMultimediaWidgets import QVideoWidget
-from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import QIcon,QCursor
+from PyQt5 import QtCore, QtGui, QtWidgets
 import sqlite3
 import speech_recognition as sr
 import threading
@@ -101,9 +102,10 @@ class MyForm(QMainWindow):
 
         self.buton = KayitButonu(self)
         self.buton.setIcon(QIcon('micro.png'))
-        self.buton.setIconSize(QSize(30, 30))
-        self.buton.setGeometry(0, 0, 30, 30)
+        self.buton.setIconSize(QSize(40, 40))
+        self.buton.setGeometry(0, 0, 50, 50)
         self.buton.setStyleSheet('border-radius:60')
+        self.buton.setCursor(QCursor(Qt.PointingHandCursor))
         self.buton.setFixedSize(self.buton.size())
         self.buton.setEnabled(True)
         self.buton.clicked.connect(self.butonTiklandi)
@@ -162,8 +164,9 @@ class MyForm(QMainWindow):
             # self.uyariLbl.setText(response["error"])
             # self.uyariLbl.show()
             self.buton.setIcon(QIcon('micro.png'))
+
         except:
-            # self.uyariLbl.setText("Bir şeyler ters gitti. Tekrar deneyin.")
+            print("Bir şeyler ters gitti. Tekrar deneyin.")
             # self.uyariLbl.show()
             self.buton.setIcon(QIcon('micro.png'))
         else:
@@ -396,6 +399,7 @@ class MyForm(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+
     w = MyForm()
     w.show()
     sys.exit(app.exec_())

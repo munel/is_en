@@ -4,6 +4,7 @@ import random
 import string
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import QUrl, QModelIndex
+from PyQt5.QtCore import Qt
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtMultimediaWidgets import QVideoWidget
 from PyQt5.QtWidgets import QDialog, QApplication, QFileDialog, QInputDialog, QMainWindow, QLineEdit, QMessageBox,QWidget
@@ -29,6 +30,8 @@ class DuzenlenecekKelimeForm(QDialog):
         self.setupUi()
 
     def setupUi(self):
+        self.setFixedSize(700, 350)
+        self.setWindowFlags(self.windowFlags() & ~Qt.WindowContextHelpButtonHint)
         self.kelimeDuzenleWidget = QWidget(self)
         self.kelimeDuzenleWidget.setGeometry(QtCore.QRect(10, 10, 751, 331))
         self.kelimeDuzenleWidget.setObjectName("kelimeDuzenleWidget")

@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(722, 366)
+        MainWindow.setFixedSize(722, 366)
         qss = "sablon.qss"
         with open(qss, "r") as fh:
             MainWindow.setStyleSheet(fh.read())

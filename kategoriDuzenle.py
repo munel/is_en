@@ -9,6 +9,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets,Qt
 from PyQt5.QtWidgets import QDialog, QWidget, QFileDialog
+from PyQt5.QtCore import Qt
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from helper import Helper
@@ -26,6 +27,7 @@ class KategoriDuzenle(QDialog):
         self.secilenKelimeler= Kelime()
         super(KategoriDuzenle, self).__init__()
         self.setFixedSize(464, 327)
+        self.setWindowFlags(self.windowFlags() & ~Qt.WindowContextHelpButtonHint)
         self.setupUi(self)
 
     def setupUi(self, formKategoriDuzenle):
