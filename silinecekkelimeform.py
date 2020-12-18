@@ -26,6 +26,10 @@ class SilinecekKelimeForm(QDialog):
         self.kelimeSilWidget.setGeometry(QtCore.QRect(10, 0, 381, 281))
         self.kelimeSilWidget.setObjectName("kelimeSilWidget")
 
+        qss = "sablon.qss"
+        with open(qss, "r") as fh:
+            self.setStyleSheet(fh.read())
+
         self.silinecekKelimeText = QtWidgets.QLineEdit(self.kelimeSilWidget)
         self.silinecekKelimeText.setGeometry(QtCore.QRect(20, 20, 131, 20))
         self.silinecekKelimeText.setToolTip("")
