@@ -80,6 +80,8 @@ class MyForm(QMainWindow):
         self.ui.actionHafizaOyunu.triggered.connect(self.hafizaOyunuAc)
         self.ui.actionKisaCevap.triggered.connect(self.kisacevapOyunuAc)
 
+        self.ui.actionYardim.triggered.connect(self.Yardim)
+        self.ui.actionHakkinda.triggered.connect(self.Hakkinda)
         self.ui.actionKelime_Ekle.triggered.connect(self.yeniKelimeEkle)
         self.ui.actionKelime_Sil.triggered.connect(self.kelimeSil)
         self.ui.actionKelime_Duzenle.triggered.connect(self.kelimeDuzenle)
@@ -395,6 +397,12 @@ class MyForm(QMainWindow):
 
     def kisacevapOyunuAc(self):
         KisaCevapFrom()
+
+    def Hakkinda(self):
+        print("Hakkında")
+
+    def Yardim(self):
+        print("Yardım")
 
 
 if __name__ == "__main__":

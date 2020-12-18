@@ -56,8 +56,12 @@ class Ui_MainWindow(object):
         self.menuKategoriler = QtWidgets.QMenu(self.menubar)
         self.menuKategoriler.setObjectName("menuKategoriler")
 
-        self.menuHakk_nda = QtWidgets.QMenu(self.menubar)
-        self.menuHakk_nda.setObjectName("menuHakk_nda")
+        self.menuEglence = QtWidgets.QMenu(self.menubar)
+        self.menuEglence.setObjectName("menuEglence")
+
+        self.menuYardim = QtWidgets.QMenu(self.menubar)
+        self.menuYardim.setObjectName("menuYardim")
+
 
         MainWindow.setMenuBar(self.menubar)
 
@@ -100,6 +104,12 @@ class Ui_MainWindow(object):
         self.actionKisaCevap = QtWidgets.QAction(MainWindow)
         self.actionKisaCevap.setObjectName("actionKisaCevap")
 
+        self.actionYardim = QtWidgets.QAction(MainWindow)
+        self.actionYardim.setObjectName("actionYardim")
+
+        self.actionHakkinda = QtWidgets.QAction(MainWindow)
+        self.actionHakkinda.setObjectName("actionHakkinda")
+
 
         self.menuKelimeler.addAction(self.actionKelime_Ekle)
         self.menuKelimeler.addAction(self.actionKelime_Duzenle)
@@ -107,12 +117,18 @@ class Ui_MainWindow(object):
         self.menuKategoriler.addAction(self.actionKategori_Ekle)
         self.menuKategoriler.addAction(self.actionKategori_Duzenle)
         self.menuKategoriler.addAction(self.actionKategori_Sil)
-        self.menuHakk_nda.addAction(self.actionHafizaOyunu)
-        self.menuHakk_nda.addAction(self.actionCoktanSecmeliSinav)
-        self.menuHakk_nda.addAction(self.actionKisaCevap)
+        self.menuEglence.addAction(self.actionHafizaOyunu)
+        self.menuEglence.addAction(self.actionCoktanSecmeliSinav)
+        self.menuEglence.addAction(self.actionKisaCevap)
+
+        self.menuYardim.addAction(self.actionYardim)
+        self.menuYardim.addAction(self.actionHakkinda)
+
+
         self.menubar.addAction(self.menuKelimeler.menuAction())
         self.menubar.addAction(self.menuKategoriler.menuAction())
-        self.menubar.addAction(self.menuHakk_nda.menuAction())
+        self.menubar.addAction(self.menuEglence.menuAction())
+        self.menubar.addAction(self.menuYardim.menuAction())
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -122,7 +138,9 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "İşaret Dili Sözlüğü"))
         self.menuKelimeler.setTitle(_translate("MainWindow", "Kelimeler"))
         self.menuKategoriler.setTitle(_translate("MainWindow", "Kategoriler"))
-        self.menuHakk_nda.setTitle(_translate("MainWindow", "Eğlence"))
+        self.menuEglence.setTitle(_translate("MainWindow", "Eğlence"))
+        self.menuYardim.setTitle(_translate("MainWindow", "Yardım"))
+
         self.actionKelime_Ekle.setText(_translate("MainWindow", "Kelime Ekle"))
         self.actionKelime_Duzenle.setText(_translate("MainWindow", "Kelime Düzenle"))
         self.actionKelime_Sil.setText(_translate("MainWindow", "Kelime Sil"))
@@ -131,10 +149,12 @@ class Ui_MainWindow(object):
         self.actionKategori_Sil.setText(_translate("MainWindow", "Kategori Sil"))
         self.actionRastgele_S_nav_Yap.setText(_translate("MainWindow", "Çoktan Seçmeli Sınav"))
         self.actionHafizaOyunu.setText(_translate("MainWindow", "Hafıza Oyunu"))
-        self.actionYard_m.setText(_translate("MainWindow", "Yardım"))
+
         self.actionCoktanSecmeliSinav.setText(_translate("MainWindow", "Çoktan Seçmeli Sınav"))
         self.actionKisaCevap.setText(_translate("MainWindow", "Kısa Cevaplı Sınav"))
 
+        self.actionYardim.setText(_translate("MainWindow", "Yardım"))
+        self.actionHakkinda.setText(_translate("MainWindow", "Hakkında"))
 
 if __name__ == "__main__":
     import sys
