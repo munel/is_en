@@ -24,7 +24,6 @@ class DuzenlenecekKelimeForm(QDialog):
         self.duzenlenecekKelimObj = Kelime()
         self.duzenlenecekVideoObj = Video ()
         self.duzenlenecekKategoriObj = Kategori()
-
         self.seciliListe = []
         super(DuzenlenecekKelimeForm, self).__init__()
         self.setupUi()
@@ -33,6 +32,11 @@ class DuzenlenecekKelimeForm(QDialog):
         self.kelimeDuzenleWidget = QWidget(self)
         self.kelimeDuzenleWidget.setGeometry(QtCore.QRect(10, 10, 751, 331))
         self.kelimeDuzenleWidget.setObjectName("kelimeDuzenleWidget")
+
+        qss = "sablon.qss"
+        with open(qss, "r") as fh:
+            self.setStyleSheet(fh.read())
+
 
         self.duzenlenecekKelimeText = QtWidgets.QLineEdit(self.kelimeDuzenleWidget)
         self.duzenlenecekKelimeText.setGeometry(QtCore.QRect(20, 20, 131, 20))
