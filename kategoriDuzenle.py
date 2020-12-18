@@ -29,6 +29,12 @@ class KategoriDuzenle(QDialog):
         self.setupUi(self)
 
     def setupUi(self, formKategoriDuzenle):
+
+        qss = "sablon.qss"
+        with open(qss, "r") as fh:
+            self.setStyleSheet(fh.read())
+
+
         formKategoriDuzenle.setObjectName("formKategoriDuzenle")
         self.label = QtWidgets.QLabel(formKategoriDuzenle)
         self.label.setGeometry(QtCore.QRect(80, 0, 261, 31))
