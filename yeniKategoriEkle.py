@@ -24,6 +24,11 @@ class YeniKategoriEkle(QDialog):
         self.setupUi(self)
 
     def setupUi(self, DialogYeniKategoriEkle):
+
+        qss = "sablon.qss"
+        with open(qss, "r") as fh:
+            self.setStyleSheet(fh.read())
+
         DialogYeniKategoriEkle.setObjectName("DialogYeniKategoriEkle")
         DialogYeniKategoriEkle.setWindowModality(QtCore.Qt.ApplicationModal)
         DialogYeniKategoriEkle.resize(492, 556)
