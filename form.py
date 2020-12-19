@@ -35,7 +35,7 @@ class Ui_MainWindow(object):
         self.listWidget.setSortingEnabled(True)
 
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(190, 10, 477, 303))
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(230, 5, 450, 309))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
 
         self.layout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
