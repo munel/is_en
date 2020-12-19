@@ -47,7 +47,7 @@ class DuzenlenecekKelimeForm(QDialog):
         self.duzenlenecekKelimeText.setObjectName("duzenlenecekKelimeText")
 
         self.labelyk = QtWidgets.QLabel(self.kelimeDuzenleWidget)
-        self.labelyk.setGeometry(QtCore.QRect(10, 220, 131, 41))
+        self.labelyk.setGeometry(QtCore.QRect(10, 220, 150, 60))
         self.labelyk.setAlignment(QtCore.Qt.AlignCenter)
         self.labelyk.setWordWrap(True)
         self.labelyk.setObjectName("labelyk")
@@ -59,7 +59,7 @@ class DuzenlenecekKelimeForm(QDialog):
         self.listWidgetDuzenlenecekKelimeler.setSortingEnabled(True)
 
         self.pushButtonKelimeDuzenle = QtWidgets.QPushButton(self.kelimeDuzenleWidget)
-        self.pushButtonKelimeDuzenle.setGeometry(QtCore.QRect(80, 280, 201, 41))
+        self.pushButtonKelimeDuzenle.setGeometry(QtCore.QRect(80, 290, 201, 41))
         self.pushButtonKelimeDuzenle.setObjectName("pushButtonKelimeDuzenle")
 
         self.verticalLayoutWidget = QtWidgets.QWidget(self.kelimeDuzenleWidget)
@@ -71,7 +71,7 @@ class DuzenlenecekKelimeForm(QDialog):
         self.layoutKelimeDuzenlne.setObjectName("layoutYeniKelime")
 
         self.labelyk_2 = QtWidgets.QLabel(self.kelimeDuzenleWidget)
-        self.labelyk_2.setGeometry(QtCore.QRect(170, 220, 161, 41))
+        self.labelyk_2.setGeometry(QtCore.QRect(170, 220, 160, 60))
         self.labelyk_2.setAlignment(QtCore.Qt.AlignCenter)
         self.labelyk_2.setWordWrap(True)
         self.labelyk_2.setObjectName("labelyk_2")
@@ -92,7 +92,7 @@ class DuzenlenecekKelimeForm(QDialog):
         self.pushButtonYeniVideoSec.setObjectName("pushButtonYeniVideoSec")
 
         self.labelyk_3 = QtWidgets.QLabel(self.kelimeDuzenleWidget)
-        self.labelyk_3.setGeometry(QtCore.QRect(510, 0, 151, 41))
+        self.labelyk_3.setGeometry(QtCore.QRect(510, 0, 160, 50))
         self.labelyk_3.setAlignment(QtCore.Qt.AlignCenter)
         self.labelyk_3.setWordWrap(True)
         self.labelyk_3.setObjectName("labelyk_3")
@@ -119,7 +119,7 @@ class DuzenlenecekKelimeForm(QDialog):
         self.duzenlenecekKelimeText.setPlaceholderText(_translate("Form", "Düzenlenecek kelime"))
         self.labelyk.setText(_translate("Form", "Düzenlenecek kelimeyi üstten seçmeniz gerekir."))
         self.pushButtonKelimeDuzenle.setText(_translate("Form", "Düzenle"))
-        self.labelyk_2.setText(_translate("Form", "KategoriSeçin.\n"
+        self.labelyk_2.setText(_translate("Form", "Kategori Seçin.\n"
 " Birden Fazla Seçim Yapabilirsiniz. "))
         self.yeniKelimeEkleText.setPlaceholderText(_translate("Form", "Yeni Kelime"))
         self.pushButtonYeniVideoSec.setText(_translate("Form", "Kelime Yeni Video Seç"))
