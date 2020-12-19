@@ -38,7 +38,7 @@ class SilinecekKelimeForm(QDialog):
         self.silinecekKelimeText.setObjectName("silinecekKelimeText")
 
         self.labelyk = QtWidgets.QLabel(self.kelimeSilWidget)
-        self.labelyk.setGeometry(QtCore.QRect(20, 220, 131, 41))
+        self.labelyk.setGeometry(QtCore.QRect(10, 220, 150, 60))
         self.labelyk.setAlignment(QtCore.Qt.AlignCenter)
         self.labelyk.setWordWrap(True)
         self.labelyk.setObjectName("labelyk")
