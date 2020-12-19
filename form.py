@@ -15,7 +15,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setFixedSize(722, 366)
-        qss = "sablon.qss"
+        qss = "anaFormSablon.qss"
         with open(qss, "r") as fh:
             MainWindow.setStyleSheet(fh.read())
         self.centralwidget = QtWidgets.QWidget(MainWindow)
