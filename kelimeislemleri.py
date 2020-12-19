@@ -47,7 +47,7 @@ class YeniKelimeEkle(QDialog):
         self.yeniKelimeEkleText.setObjectName("yeniKelimeEkleText")
 
         self.labelyk = QtWidgets.QLabel(self.yeniKelimeWidget)
-        self.labelyk.setGeometry(QtCore.QRect(10, 56, 131, 41))
+        self.labelyk.setGeometry(QtCore.QRect(10, 56, 150, 50))
         self.labelyk.setAlignment(QtCore.Qt.AlignCenter)
         self.labelyk.setWordWrap(True)
         self.labelyk.setObjectName("labelyk")
