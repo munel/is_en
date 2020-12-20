@@ -231,7 +231,6 @@ class MyForm(QMainWindow):
 
     def listeleriHazirla(self):
         try:
-
             kelimeListesiTupple = KelimeBLL.KelimeleriListele()
             kategoriListesiTupple = KategoriBLL.KategorileriListele()
             self.kelimeListesi = [item[0] for item in kelimeListesiTupple]
@@ -249,9 +248,12 @@ class MyForm(QMainWindow):
         except Exception as e:
             print(e)
         if self.yenikelimeEkle.exec_() == 1:
-            self.listeleriHazirla()
-            self.listeyiHazirla()
             QMessageBox.information(self, "Yeni Kelime", "Yeni Kelime Eklendi")
+        else:
+            QMessageBox.warning(self, "Yeni Kelime", "Yeni kelime eklenemedi.")
+        self.listeleriHazirla()
+        self.comboListeHazirla()
+        self.listeyiHazirla()
 
     def kelimeSil(self):
         try:
@@ -261,12 +263,13 @@ class MyForm(QMainWindow):
         except Exception as e:
             print(e)
         if self.kelimeSil.exec_() == 1:
-            self.listeleriHazirla()
-            self.ui.listWidget.clear()
-            self.ui.listWidget.addItems(self.kelimeListesi)
             QMessageBox.information(self, "Kelime Sil", "Kelime Silindi")
-            self.listeleriHazirla()
-            self.listeyiHazirla()
+        else:
+            QMessageBox.warning(self, "Kelime Sil", "Kelime Silinemedi.")
+
+        self.listeleriHazirla()
+        self.comboListeHazirla()
+        self.listeyiHazirla()
 
     def kelimeDuzenle(self):
 
@@ -280,12 +283,13 @@ class MyForm(QMainWindow):
         except Exception as e:
             print(e)
         if self.KelimeDuzenle.exec_() == 1:
-            self.listeleriHazirla()
-            self.ui.listWidget.clear()
-            self.ui.listWidget.addItems(self.kelimeListesi)
             QMessageBox.information(self, "Kelime Düzenle", "Kelime Düzeltildi.")
-            self.listeleriHazirla()
-            self.listeyiHazirla()
+        else:
+            QMessageBox.warning(self, "Kelime Düzenle", "Kelime Düzenlenemedi.")
+
+        self.listeleriHazirla()
+        self.comboListeHazirla()
+        self.listeyiHazirla()
 
     def kategoriDuzenle(self):
 
@@ -299,12 +303,13 @@ class MyForm(QMainWindow):
 
         if self.kategoriDuzenle.exec_() == 1:
 
-            self.listeleriHazirla()
-            self.comboListeHazirla()
-            self.listeyiHazirla()
             QMessageBox.information(self, "Kategori Düzenle", "Kategori Düzenlendi.")
         else:
             QMessageBox.warning(self, "Kategori Düzenle", "Kategori Düzenlenemedi.")
+
+        self.listeleriHazirla()
+        self.comboListeHazirla()
+        self.listeyiHazirla()
 
 
     def yeniKategoriEkle(self):
@@ -317,12 +322,14 @@ class MyForm(QMainWindow):
 
         except Exception as e:
             print(e)
-
         if self.yeniKategoriEkle.exec_() == 1:
-            self.listeleriHazirla()
-            self.listeyiHazirla()
-            self.comboListeHazirla()
-            #QMessageBox.information(self, "Yeni Kelime", "Yeni Kelime Eklendi")
+            QMessageBox.information(self, "Yeni Kelime", "Yeni Kelime Eklendi")
+        else:
+            QMessageBox.warning(self, "Yeni Kategori", "Yeni Kategori Eklenemedi")
+
+        self.listeleriHazirla()
+        self.listeyiHazirla()
+        self.comboListeHazirla()
 
     def kategoriSil(self):
         try:
@@ -333,7 +340,6 @@ class MyForm(QMainWindow):
                 QMessageBox.information(self, "Kategori Sil", "Kategori ve ilişileri Silindi")
             else:
                 QMessageBox.warning(self, "Kategori Sil", "Kategori ve/veya ilişkileri silinemedi.")
-
         except Exception as e:
             print(e)
 
