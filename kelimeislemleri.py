@@ -7,11 +7,8 @@ from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtMultimediaWidgets import QVideoWidget
 from PyQt5.QtWidgets import QDialog, QWidget, QFileDialog
 from pathlib import Path
-import sqlite3
-
 import string
 
-conn = sqlite3.connect('Sozluk.db')
 from entity import Kelime
 from entity import Video
 from entity import Kategori
@@ -38,8 +35,6 @@ class YeniKelimeEkle(QDialog):
         qss = "sablon.qss"
         with open(qss, "r") as fh:
             self.setStyleSheet(fh.read())
-
-
 
         self.yeniKelimeEkleText = QtWidgets.QLineEdit(self.yeniKelimeWidget)
         self.yeniKelimeEkleText.setGeometry(QtCore.QRect(10, 20, 131, 20))
