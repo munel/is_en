@@ -1,6 +1,3 @@
-import sys
-from datetime import time
-from PyQt5.QtWidgets import QMessageBox, QVBoxLayout, QProgressBar
 from kelimeislemleri import YeniKelimeEkle
 from silinecekkelimeform import SilinecekKelimeForm
 from duzenlenecekkelimeform import DuzenlenecekKelimeForm
@@ -22,14 +19,17 @@ from kelimeBLL import KelimeBLL
 from entity import Kelime
 from entity import Kategori
 from helper import Helper
+
 import sys
 import time
-from PyQt5.QtCore import QUrl, QDir, QSize, Qt, QThread, pyqtSignal
+from datetime import time
+
+from PyQt5.QtWidgets import QMessageBox, QVBoxLayout, QProgressBar
+from PyQt5.QtCore import QUrl, QSize, Qt, QThread, pyqtSignal
 from PyQt5.QtMultimedia import QMediaContent, QMediaPlayer
 from PyQt5.QtMultimediaWidgets import QVideoWidget
-from PyQt5.QtGui import QIcon,QCursor
-from PyQt5 import QtCore, QtGui, QtWidgets
-import sqlite3
+from PyQt5.QtGui import QIcon, QCursor
+from PyQt5 import QtGui, QtWidgets
 import speech_recognition as sr
 import threading
 import seslearamavb
