@@ -6,14 +6,12 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui, QtWidgets,Qt
+from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QDialog, QWidget, QFileDialog
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
+from PyQt5.QtWidgets import QDialog
+
 from entity import Kelime
 from entity import Kategori
-from kelimeBLL import KelimeBLL
 from kategoriBLL import KategoriBLL
 
 class KategoriSil(QDialog):
@@ -111,8 +109,8 @@ class KategoriSil(QDialog):
     def KategoriyiSil(self):
         silindiMi = KategoriBLL.KategoriSil(self.silinecekKategori)
         if silindiMi:
-            print("silinmişşşşş")
+            print("silinmiş")
             self.done(1)
         else:
-            print("silinmemişşşş")
+            print("silinmemiş")
             self.done(-1)

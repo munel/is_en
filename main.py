@@ -247,13 +247,15 @@ class MyForm(QMainWindow):
                 print("Deneme")
         except Exception as e:
             print(e)
-        if self.yenikelimeEkle.exec_() == 1:
+        donusDurumu=self.yenikelimeEkle.exec_()
+        if  donusDurumu== 1:
             QMessageBox.information(self, "Yeni Kelime", "Yeni Kelime Eklendi")
         else:
             QMessageBox.warning(self, "Yeni Kelime", "Yeni kelime eklenemedi.")
         self.listeleriHazirla()
         self.comboListeHazirla()
         self.listeyiHazirla()
+
 
     def kelimeSil(self):
         try:
@@ -262,7 +264,8 @@ class MyForm(QMainWindow):
 
         except Exception as e:
             print(e)
-        if self.kelimeSil.exec_() == 1:
+        donusDurumu = self.kelimeSil.exec_()
+        if donusDurumu == 1:
             QMessageBox.information(self, "Kelime Sil", "Kelime Silindi")
         else:
             QMessageBox.warning(self, "Kelime Sil", "Kelime Silinemedi.")
@@ -282,7 +285,9 @@ class MyForm(QMainWindow):
                 print("Kelime Düzenle Kapatıldı")
         except Exception as e:
             print(e)
-        if self.KelimeDuzenle.exec_() == 1:
+
+        donusDurumu= self.KelimeDuzenle.exec_()
+        if donusDurumu== 1:
             QMessageBox.information(self, "Kelime Düzenle", "Kelime Düzeltildi.")
         else:
             QMessageBox.warning(self, "Kelime Düzenle", "Kelime Düzenlenemedi.")
@@ -301,7 +306,8 @@ class MyForm(QMainWindow):
         except Exception as e:
             print(e)
 
-        if self.kategoriDuzenle.exec_() == 1:
+        donusDurumu = self.kategoriDuzenle.exec_()
+        if donusDurumu == 1:
 
             QMessageBox.information(self, "Kategori Düzenle", "Kategori Düzenlendi.")
         else:
@@ -322,7 +328,8 @@ class MyForm(QMainWindow):
 
         except Exception as e:
             print(e)
-        if self.yeniKategoriEkle.exec_() == 1:
+        donusDurumu = self.yeniKategoriEkle.exec_()
+        if donusDurumu == 1:
             QMessageBox.information(self, "Yeni Kelime", "Yeni Kelime Eklendi")
         else:
             QMessageBox.warning(self, "Yeni Kategori", "Yeni Kategori Eklenemedi")
@@ -335,8 +342,8 @@ class MyForm(QMainWindow):
         try:
             self.kategoriSil = KategoriSil()
             self.kategoriSil.show()
-
-            if self.kategoriSil.exec_() == 1:
+            donusDurumu = self.kategoriSil.exec_()
+            if donusDurumu == 1:
                 QMessageBox.information(self, "Kategori Sil", "Kategori ve ilişileri Silindi")
             else:
                 QMessageBox.warning(self, "Kategori Sil", "Kategori ve/veya ilişkileri silinemedi.")
