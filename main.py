@@ -33,6 +33,7 @@ import sqlite3
 import speech_recognition as sr
 import threading
 import seslearamavb
+import webbrowser
 
 
 class KayitButonu(QtWidgets.QPushButton):
@@ -405,7 +406,7 @@ class MyForm(QMainWindow):
         self.hakkinda.show()
 
     def Yardim(self):
-        print("Yardım")
+        webbrowser.open('https://github.com/munel/is_en')
 
 
 if __name__ == "__main__":
