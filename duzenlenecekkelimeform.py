@@ -156,6 +156,7 @@ class DuzenlenecekKelimeForm(QDialog):
         try:
 
             self.duzenlenecekKelimObj.kelime = self.listWidgetDuzenlenecekKelimeler.currentItem().text()
+            self.yeniKelimeEkleText.setText(self.duzenlenecekKelimObj.kelime)
             sonuc = KelimeBLL.KelimeVideoBul(self.duzenlenecekKelimObj)
             print("Listedeki eleman seçildi.----------------------------------")
             gruplarTuple = KategoriBLL.KelimeyeAitKategoriBul(self.duzenlenecekKelimObj)
@@ -248,6 +249,7 @@ class DuzenlenecekKelimeForm(QDialog):
                 #Video silinemezse sonuç üzerinden işlem yapılabilir.
             else:
                 print("yeni video seçilmedi")
+                self.duzenlenecekVideoObj.videoHedefYol= self.duzenlenecekVideoObj.secilenKelimeVideoYol
 
             print("kelime güncellenecek.")
             KelimeBLL.KelimeVideoGuncelle(self.duzenlenecekKelimObj,self.duzenlenecekVideoObj)
