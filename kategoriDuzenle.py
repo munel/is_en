@@ -7,11 +7,11 @@
 # WARNING! All changes made in this file will be lost!
 
 
-from PyQt5 import QtCore, QtGui, QtWidgets,Qt
-from PyQt5.QtWidgets import QDialog, QWidget, QFileDialog
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QDialog
 from PyQt5.QtCore import Qt
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
+
+
 from helper import Helper
 from entity import Kelime
 from entity import Kategori
@@ -35,7 +35,6 @@ class KategoriDuzenle(QDialog):
         qss = "sablon.qss"
         with open(qss, "r") as fh:
             self.setStyleSheet(fh.read())
-
 
         formKategoriDuzenle.setObjectName("formKategoriDuzenle")
         self.label = QtWidgets.QLabel(formKategoriDuzenle)
@@ -166,9 +165,6 @@ class KategoriDuzenle(QDialog):
         else:
             print("Güncellenemedi.")
             self.done(-1)
-
-
-
 
 
     def KelimelerListesiniAc(self):
