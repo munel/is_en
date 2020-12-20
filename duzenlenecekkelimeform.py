@@ -1,14 +1,12 @@
-
-from PyQt5 import QtCore, QtGui, QtWidgets
 import random
 import string
 from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtCore import QUrl, QModelIndex
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import QUrl, Qt
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtMultimediaWidgets import QVideoWidget
-from PyQt5.QtWidgets import QDialog, QApplication, QFileDialog, QInputDialog, QMainWindow, QLineEdit, QMessageBox,QWidget
+from PyQt5.QtWidgets import QDialog, QFileDialog, QWidget
 from pathlib import Path
+
 from entity import Kelime
 from entity import Video
 from entity import Kategori
@@ -111,8 +109,6 @@ class DuzenlenecekKelimeForm(QDialog):
         self.retranslateUi(self)
         self.actionsHazirla()
 
-
-
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Kelime Düzenle"))
@@ -131,8 +127,6 @@ class DuzenlenecekKelimeForm(QDialog):
         self.listWidgetDuzenlenecekKelimeler.itemClicked.connect(self.KelimeListesindenSecimYapildi)
         self.listWidgetYKategoriler.itemSelectionChanged.connect(self.listeSecilenKategorileriAl)
         self.pushButtonYeniVideoSec.clicked.connect(self.videoSec)
-
-
 
     def aramaMetniDegistir(self):
         try:
@@ -222,8 +216,6 @@ class DuzenlenecekKelimeForm(QDialog):
                 self.duzenlenecekVideoObj.videoKaynakYol = orjinalYolu
                 self.duzenlenecekVideoObj.videoHedefYol = hedef
 
-
-
         except Exception as exp:
             print(exp)
 
@@ -258,6 +250,3 @@ class DuzenlenecekKelimeForm(QDialog):
             KategoriBLL.KategoriKelimeIdGuncelle(self.duzenlenecekKelimObj, self.duzenlenecekKategoriObj)
             self.listeleriHazirla()
             self.listeyiHazirla()
-
-
-
