@@ -1,10 +1,10 @@
 
 from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtCore import QUrl
+from PyQt5.QtCore import QUrl, Qt
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtMultimediaWidgets import QVideoWidget
-from PyQt5.QtWidgets import QDialog, QApplication, QFileDialog, QInputDialog, QMainWindow, QLineEdit, QMessageBox,QWidget
-from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QDialog, QMessageBox, QWidget
+
 from entity import Kelime
 from entity import Video
 from kelimeBLL import KelimeBLL
