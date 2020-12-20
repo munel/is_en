@@ -236,3 +236,29 @@ QScrollBar::sub-line:vertical {
 	subcontrol-position: top;
 	subcontrol-origin: margin;
 }
+
+QMessageBox QPushButton
+{
+	background-color: #ff732d;
+	color: #000000;
+	padding:10px 20px;
+	font-weight: bold;
+	border: 2px solid;
+	border-radius: 5px;
+}
+QMessageBox QPushButton:hover
+{
+	background-color: #fff7e6;
+	
+    color: #ff732d;
+}
+QMessageBox QPushButton:pressed
+{
+	background-color: #ff3300;
+    color: #fff7e6;
+}
+QMessageBox QPushButton::checked
+{
+	background-color: #fff7e6;
+    color: #ff732d;
+}
