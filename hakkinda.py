@@ -41,7 +41,7 @@ class Hakkinda(QDialog):
         with open(qss, "r") as fh:
             self.setStyleSheet(fh.read())
         Hakkinda.setObjectName("Hakkinda")
-        Hakkinda.resize(500, 610)
+        Hakkinda.resize(640, 480)
         self.gridLayout = QtWidgets.QGridLayout(Hakkinda)
         self.gridLayout.setObjectName("gridLayout")
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
@@ -81,21 +81,14 @@ class Hakkinda(QDialog):
         self.gridLayout.addLayout(self.verticalLayout_4, 0, 0, 1, 1)
 
         self.pressing = False
-        # setting  the geometry of window
-
 
         # creating label
-
-
         print("loading image")
         self.pixmap = QPixmap("./resim/ust_banner.png")
 
         # adding image to label
         self.lblUstGorunum.setScaledContents(True)
         self.lblUstGorunum.setPixmap(self.pixmap)
-
-
-
 
         self.retranslateUi(Hakkinda)
         QtCore.QMetaObject.connectSlotsByName(Hakkinda)
