@@ -13,6 +13,8 @@ from Sinav_coktan_secme import *
 from isaret_dili_hafiza_oyunu import *
 from kisacevapmain import KisaCevapFrom
 
+from hakkinda import Hakkinda
+
 from form import *
 
 from kategoriBLL import KategoriBLL
@@ -399,7 +401,8 @@ class MyForm(QMainWindow):
         KisaCevapFrom()
 
     def Hakkinda(self):
-        print("Hakkında")
+        self.hakkinda = Hakkinda()
+        self.hakkinda.show()
 
     def Yardim(self):
         print("Yardım")
