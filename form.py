@@ -94,6 +94,9 @@ class Ui_MainWindow(object):
 
         self.actionHafizaOyunu = QtWidgets.QAction(MainWindow)
         self.actionHafizaOyunu.setObjectName("actionHafizaOyunu")
+        
+        self.actionHafizaOyunu2 = QtWidgets.QAction(MainWindow)
+        self.actionHafizaOyunu2.setObjectName("actionHafizaOyunu2")
 
         self.actionYard_m = QtWidgets.QAction(MainWindow)
         self.actionYard_m.setObjectName("actionYard_m")
@@ -118,6 +121,7 @@ class Ui_MainWindow(object):
         self.menuKategoriler.addAction(self.actionKategori_Duzenle)
         self.menuKategoriler.addAction(self.actionKategori_Sil)
         self.menuEglence.addAction(self.actionHafizaOyunu)
+        self.menuEglence.addAction(self.actionHafizaOyunu2)
         self.menuEglence.addAction(self.actionCoktanSecmeliSinav)
         self.menuEglence.addAction(self.actionKisaCevap)
 
@@ -149,6 +153,7 @@ class Ui_MainWindow(object):
         self.actionKategori_Sil.setText(_translate("MainWindow", "Kategori Sil"))
         self.actionRastgele_S_nav_Yap.setText(_translate("MainWindow", "Çoktan Seçmeli Sınav"))
         self.actionHafizaOyunu.setText(_translate("MainWindow", "Hafıza Oyunu"))
+        self.actionHafizaOyunu2.setText(_translate("MainWindow", "Hafıza Oyunu 2"))
 
         self.actionCoktanSecmeliSinav.setText(_translate("MainWindow", "Çoktan Seçmeli Sınav"))
         self.actionKisaCevap.setText(_translate("MainWindow", "Kısa Cevaplı Sınav"))
