@@ -10,6 +10,7 @@ from silinecekkelimeform import SilinecekKelimeForm
 from duzenlenecekkelimeform import DuzenlenecekKelimeForm
 from Sinav_coktan_secme import *
 from isaret_dili_hafiza_oyunu import *
+from hafiza_oyunu_part_2 import *
 from kisacevapmain import KisaCevapFrom
 from hakkinda import Hakkinda
 from form import *
@@ -74,6 +75,7 @@ class MyForm(QMainWindow):
         self.ui.actionKategori_Duzenle.triggered.connect(self.kategoriDuzenle)
         self.ui.actionCoktanSecmeliSinav.triggered.connect(self.sinavCoktanSecmeli)
         self.ui.actionHafizaOyunu.triggered.connect(self.hafizaOyunuAc)
+        self.ui.actionHafizaOyunu2.triggered.connect(self.hafizaOyunuAc2)
         self.ui.actionKisaCevap.triggered.connect(self.kisacevapOyunuAc)
 
         self.ui.actionYardim.triggered.connect(self.Yardim)
@@ -402,6 +404,10 @@ class MyForm(QMainWindow):
 
     def hafizaOyunuAc(self):
         h = HafizaOyunu()
+        h.oyunuBaslat()
+    
+    def hafizaOyunuAc2(self):
+        h = HafizaOyunu2()
         h.oyunuBaslat()
 
     def kisacevapOyunuAc(self):
