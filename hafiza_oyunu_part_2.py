@@ -10,20 +10,14 @@ class HafizaOyunu2:
         self.bilinen = 0
         self.bilinenDugmeler=[]
         resimler = []
-
         harfler=[]
         atananlar = []
         self.oncekiBasilan = -1
         for i in range(0,28):
             resimler.append(PhotoImage(file="resim/resimler/"+ str(i) +".png", width=80, height=80))
             harfler.append(PhotoImage(file="resim/harfler/" + str(i) + ".png", width=80, height=80))
-
-
-
-
-
+            
         def cevir(a):
-
             if (len(hafiza) == 1 and a == self.oncekiBasilan)  or (a in self.bilinenDugmeler):
                 print("aynı buton")
             else:
@@ -33,8 +27,6 @@ class HafizaOyunu2:
                             self.ilk_buton = i[2]
                             ##y = PhotoImage(file=str(i[1]) + ".png", width=50, height=50)
                             self.ilk_buton.config(text=i[1], image=resimler[int(i[1])], state="normal")
-
-
                             hafiza.append(i)
                             print(hafiza)
                 else:
