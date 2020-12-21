@@ -4,7 +4,7 @@ import time
 from tkinter import messagebox
 
 class HafizaOyunu2:
-    def oyunuBaslat2(self):
+    def oyunuBaslat(self):
         pencere = Tk()
         hafiza = []
         self.bilinen = 0
