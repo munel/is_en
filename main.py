@@ -1,30 +1,23 @@
+import sys
+import time
+from datetime import time
+from PyQt5.QtWidgets import QMessageBox, QVBoxLayout, QProgressBar
 from kelimeislemleri import YeniKelimeEkle
-from silinecekkelimeform import SilinecekKelimeForm
-from duzenlenecekkelimeform import DuzenlenecekKelimeForm
-
 from yeniKategoriEkle import YeniKategoriEkle
 from kategoriDuzenle import KategoriDuzenle
 from kategoriSil import KategoriSil
-
+from silinecekkelimeform import SilinecekKelimeForm
+from duzenlenecekkelimeform import DuzenlenecekKelimeForm
 from Sinav_coktan_secme import *
 from isaret_dili_hafiza_oyunu import *
 from kisacevapmain import KisaCevapFrom
-
 from hakkinda import Hakkinda
-
 from form import *
-
 from kategoriBLL import KategoriBLL
 from kelimeBLL import KelimeBLL
 from entity import Kelime
 from entity import Kategori
 from helper import Helper
-
-import sys
-import time
-from datetime import time
-
-from PyQt5.QtWidgets import QMessageBox, QVBoxLayout, QProgressBar
 from PyQt5.QtCore import QUrl, QSize, Qt, QThread, pyqtSignal
 from PyQt5.QtMultimedia import QMediaContent, QMediaPlayer
 from PyQt5.QtMultimediaWidgets import QVideoWidget
