@@ -68,7 +68,7 @@ class HafizaOyunu:
 
         satirno = 0
         m = PhotoImage(file="resim/kapat.png", width=80, height=80)
-        ikon = tkinter.PhotoImage(file = "resim/logo.png")
+        ikon = PhotoImage(file = "resim/logo.png")
         pencere.iconphoto(False, ikon)
         for satir in range(0, 6):
             sutunno = 0
