@@ -1,5 +1,3 @@
-import sys
-import time
 from datetime import time
 from PyQt5.QtWidgets import QMessageBox, QVBoxLayout, QProgressBar
 from kelimeislemleri import YeniKelimeEkle
